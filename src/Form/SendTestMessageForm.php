@@ -4,7 +4,8 @@ namespace Drupal\slack\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\slack;
+use Drupal\slack\Slack;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
@@ -13,6 +14,29 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * @package Drupal\slack\Form
  */
 class SendTestMessageForm extends FormBase {
+
+  /**
+   * Slack service.
+   *
+   * @var \Drupal\slack\Slack
+   */
+  protected $slackService;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct(Slack $slack) {
+    $this->slackService = $slack;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('slack.slack_service')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -60,7 +84,7 @@ class SendTestMessageForm extends FormBase {
       $channel = $form_state->getValue('slack_test_channel');
       $message = $form_state->getValue('slack_test_message');
       $username = $config->get('slack_username');
-      $response = \Drupal::service('slack.slack_service')->sendMessage($message, $channel, $username);
+      $response = $this->slackService->sendMessage($message, $channel, $username);
       if ($response && RedirectResponse::HTTP_OK == $response->getStatusCode()) {
           drupal_set_message(t('Message was successfully sent!'));
         } else {
