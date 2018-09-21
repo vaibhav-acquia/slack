@@ -26,7 +26,7 @@ function slack_help($path, $arg) {
       $output .= '<dt>' . t('General') . '</dt>';
       $output .= '<dd>' . t('The Slack module allows you to send messages from your website to Slack.') . '</dd>';
       $output .= '<dt>' . t('Rules Integration') . '</dt>';
-      $output .= '<dd>' . t('The Slack module includes Rules module integration. Also you can use the module API in your modules') . '</dd>';
+      $output .= '<dd>' . t('The Slack module includes Rules module integration. Also, you can use the module API in your modules.') . '</dd>';
       $output .= '<dt>' . t('Icon Support') . '</dt>';
       $output .= '<dd>' . t('Icons support for your slackbot (icons and emoji) is included along with Slack friendly tags. If "http://www."-part is not added in href, slack will represent the link as relative path.') . '</dd>';
       $output .= '</dl>';
