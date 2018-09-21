@@ -50,22 +50,22 @@ class SendTestMessageForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('slack.settings');
-    $form['slack_test_channel'] = array(
+    $form['slack_test_channel'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Channel or username'),
       '#default_value' => $config->get('slack_channel'),
-    );
-    $form['slack_test_message'] = array(
+    ];
+    $form['slack_test_message'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Message'),
       '#required' => TRUE,
-    );
+    ];
     $form['actions']['#type'] = 'actions';
-    $form['actions']['submit'] = array(
+    $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Send message'),
       '#button_type' => 'primary',
-    );
+    ];
     return $form;
   }
 
