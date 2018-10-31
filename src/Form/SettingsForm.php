@@ -4,7 +4,6 @@ namespace Drupal\slack\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Form\FormState;
 
 /**
  * Class SettingsForm.
@@ -32,6 +31,9 @@ class SettingsForm extends ConfigFormBase {
     return ['slack.settings'];
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('slack.settings');
 
@@ -60,7 +62,8 @@ class SettingsForm extends ConfigFormBase {
       '#options' => [
         'emoji' => $this->t('Emoji'),
         'image' => $this->t('Image'),
-        'none' => $this->t('None (Use default integration settings)')],
+        'none' => $this->t('None (Use default integration settings)'),
+      ],
       '#default_value' => $config->get('slack_icon_type'),
     ];
     $form['slack_icon_emoji'] = [
@@ -78,7 +81,7 @@ class SettingsForm extends ConfigFormBase {
     ];
     $form['slack_icon_url'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Image URL '),
+      '#title' => $this->t('Image URL'),
       '#default_value' => $config->get('slack_icon_url'),
       '#description' => $this->t('What icon would you use for your SlackBot?'),
       '#states' => [
@@ -90,7 +93,7 @@ class SettingsForm extends ConfigFormBase {
       ],
     ];
     if (empty($config->get('slack_webhook_url'))) {
-      drupal_set_message(t('Slack sending message page will be available after you fill "Webhook URL" field'), 'warning');
+      drupal_set_message($this->t('Slack sending message page will be available after you fill "Webhook URL" field'), 'warning');
     }
     return parent::buildForm($form, $form_state);
   }
@@ -101,13 +104,13 @@ class SettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('slack.settings');
     $config
-        ->set('slack_webhook_url', trim($form_state->getValue('slack_webhook_url')))
-        ->set('slack_channel', $form_state->getValue('slack_channel'))
-        ->set('slack_username', $form_state->getValue('slack_username'))
-        ->set('slack_icon_type', $form_state->getValue('slack_icon_type'))
-        ->set('slack_icon_emoji', $form_state->getValue('slack_icon_emoji'))
-        ->set('slack_icon_url', $form_state->getValue('slack_icon_url'))
-        ->save();
+      ->set('slack_webhook_url', trim($form_state->getValue('slack_webhook_url')))
+      ->set('slack_channel', $form_state->getValue('slack_channel'))
+      ->set('slack_username', $form_state->getValue('slack_username'))
+      ->set('slack_icon_type', $form_state->getValue('slack_icon_type'))
+      ->set('slack_icon_emoji', $form_state->getValue('slack_icon_emoji'))
+      ->set('slack_icon_url', $form_state->getValue('slack_icon_url'))
+      ->save();
     parent::submitForm($form, $form_state);
   }
 

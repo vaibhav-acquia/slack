@@ -36,12 +36,10 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
  */
 class SlackSendMessage extends RulesActionBase implements ContainerFactoryPluginInterface {
 
-
   /**
    * @var \Drupal\slack\Slack
    */
   protected $slackService;
-
 
   /**
    * Constructs a SlackSendMessage object.
@@ -52,10 +50,10 @@ class SlackSendMessage extends RulesActionBase implements ContainerFactoryPlugin
    *   The plugin ID for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\slack\Slack
+   * @param \Drupal\slack\Slack $slack_service
    *   The Slack manager service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, Slack $slack_service){
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, Slack $slack_service) {
     $this->slackService = $slack_service;
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
@@ -63,7 +61,7 @@ class SlackSendMessage extends RulesActionBase implements ContainerFactoryPlugin
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition){
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
       $configuration,
       $plugin_id,
@@ -72,16 +70,18 @@ class SlackSendMessage extends RulesActionBase implements ContainerFactoryPlugin
     );
   }
 
-/**
- * Send message to slack.
- * @param string $username
- *    The slack username.
- * @param string $message
- *    The message to be sended.
- * @param string $channel
- *    The slack channel.
- */
-  protected function doExecute($message, $channel = '', $username = ''){
+  /**
+   * Send message to slack.
+   *
+   * @param string $message
+   *   The message to be sended.
+   * @param string $channel
+   *   The slack channel.
+   * @param string $username
+   *   The slack username.
+   */
+  protected function doExecute($message, $channel = '', $username = '') {
     $this->slackService->sendMessage($message, $channel, $username);
   }
+
 }

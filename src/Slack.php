@@ -5,7 +5,9 @@ namespace Drupal\slack;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use GuzzleHttp\ClientInterface;
-
+use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ConnectException;
 
 /**
  * Send messages to Slack.
@@ -30,9 +32,12 @@ class Slack {
   /**
    * Constructs a Slack object.
    *
-   * @param ConfigFactoryInterface $config
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config
+   *   Module configuration.
    * @param \GuzzleHttp\ClientInterface $http_client
-   * @param LoggerChannelFactoryInterface $logger
+   *   HTTP Client.
+   * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger
+   *   Logger.
    */
   public function __construct(ConfigFactoryInterface $config, ClientInterface $http_client, LoggerChannelFactoryInterface $logger) {
     $this->config = $config;
@@ -58,7 +63,7 @@ class Slack {
     $webhook_url = $config->get('slack_webhook_url');
 
     if (empty($webhook_url)) {
-      drupal_set_message(t('You need to enter a webhook!'), 'error');
+      drupal_set_message($this->t('You need to enter a webhook!'), 'error');
       return FALSE;
     }
 
@@ -81,10 +86,14 @@ class Slack {
    * Prepare message meta fields for Slack.
    *
    * @param string $webhook_url
+   *   Webhook for Slack basic functions.
    * @param string $channel
+   *   The channel in the Slack service to send messages.
    * @param string $username
+   *   The bot name displayed in the channel.
    *
    * @return array
+   *   Config array.
    */
   protected function prepareMessage($webhook_url, $channel, $username) {
     $config = $this->config->get('slack.settings');
@@ -122,28 +131,26 @@ class Slack {
   /**
    * Send message to the Slack with more options.
    *
-   * @param string $team_name
-   *   Your team name in the Slack.
-   * @param string $team_token
-   *   The token from "Incoming WebHooks" integration in the Slack.
+   * @param string $webhook_url
+   *   Webhook for Slack basic functions.
    * @param string $message
    *   The message sent to the channel.
    * @param array $message_options
    *   An associative array, it can contain:
-   *     - channel: The channel in the Slack service to send messages
-   *     - username: The bot name displayed in the channel
-   *     - icon_emoji: The bot icon displayed in the channel
-   *     - icon_url: The bot icon displayed in the channel
+   *     - channel: The channel in the Slack service to send messages;
+   *     - username: The bot name displayed in the channel;
+   *     - icon_emoji: The bot icon displayed in the channel;
+   *     - icon_url: The bot icon displayed in the channel.
    *
    * @return object
    *   Can contain:
-   *                          success      fail          fail
-   *     - data:                ok         No hooks      Invalid channel specified
-   *     - status message:      OK         Not found     Server Error
-   *     - code:                200        404           500
-   *     - error:               -          Not found     Server Error
+   *                          success    fail         fail
+   *     - data:                ok       No hooks     Invalid channel specified
+   *     - status message:      OK       Not found    Server Error
+   *     - code:                200      404          500
+   *     - error:               -        Not found    Server Error
    */
-  protected function sendRequest($webhook_url, $message, $message_options = []) {
+  protected function sendRequest($webhook_url, $message, array $message_options = []) {
     $headers = [
       'Content-Type' => 'application/x-www-form-urlencoded',
     ];
@@ -155,15 +162,18 @@ class Slack {
       $response = $this->httpClient->request('POST', $webhook_url, ['headers' => $headers, 'body' => $sending_data]);
       $logger->info('Message was successfully sent!');
       return $response;
-    } catch (\GuzzleHttp\Exception\ServerException $e) {
+    }
+    catch (ServerException $e) {
       $logger->error('Server error! It may appear if you try to use unexisting chatroom.');
       watchdog_exception('slack', $e);
       return FALSE;
-    } catch (\GuzzleHttp\Exception\RequestException $e) {
+    }
+    catch (RequestException $e) {
       $logger->error('Request error! It may appear if you entered the invalid Webhook value.');
       watchdog_exception('slack', $e);
       return FALSE;
-    } catch (\GuzzleHttp\Exception\ConnectException $e) {
+    }
+    catch (ConnectException $e) {
       $logger->error('Connection error! Something wrong with your connection. Message was\'nt sent.');
       watchdog_exception('slack', $e);
       return FALSE;
@@ -198,5 +208,5 @@ class Slack {
     }
     return $message;
   }
-}
 
+}

@@ -78,6 +78,9 @@ class SendTestMessageForm extends FormBase {
     }
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     if (empty($form_state->getRedirect())) {
       $config = $this->config('slack.settings');
@@ -86,10 +89,12 @@ class SendTestMessageForm extends FormBase {
       $username = $config->get('slack_username');
       $response = $this->slackService->sendMessage($message, $channel, $username);
       if ($response && RedirectResponse::HTTP_OK == $response->getStatusCode()) {
-          drupal_set_message(t('Message was successfully sent!'));
-        } else {
-        drupal_set_message(t('Please check log messages for further details'), 'warning');
+        drupal_set_message($this->t('Message was successfully sent!'));
+      }
+      else {
+        drupal_set_message($this->t('Please check log messages for further details'), 'warning');
       }
     }
   }
+
 }
