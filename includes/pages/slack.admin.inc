@@ -6,6 +6,13 @@
  */
 
 /**
+ * Form validate handler for the currency settings form.
+ */
+function webhook_trim($form, &$form_state) {
+  $form_state['values']['slack_webhook_url'] = trim($form_state['values']['slack_webhook_url']);
+}
+
+/**
  * Slack module admin form.
  */
 function slack_configure_form($form, &$form_state) {
@@ -53,7 +60,7 @@ function slack_configure_form($form, &$form_state) {
   );
   $form['slack_icon_url'] = array(
     '#type' => 'textfield',
-    '#title' => t('Image URL '),
+    '#title' => t('Image URL'),
     '#default_value' => variable_get('slack_icon_url'),
     '#description' => t('What icon would you use for your SlackBot?'),
     '#states' => array(
@@ -177,6 +184,8 @@ function slack_configure_form($form, &$form_state) {
     ),
     '#states' => $attachment_state_toggle,
   );
+
+  $form['#validate'][] = 'webhook_trim';
 
   return system_settings_form($form);
 }

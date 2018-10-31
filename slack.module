@@ -13,7 +13,7 @@ require_once 'includes/slack.api.inc';
 require_once 'slack.tokens.inc';
 
 /**
- * Implementation of hook_help().
+ * Implements hook_help().
  */
 function slack_help($path, $arg) {
   switch ($path) {
@@ -44,7 +44,7 @@ function slack_menu() {
     'title' => 'Slack',
     'description' => 'Configure slack module.',
     'page callback' => 'system_admin_menu_block_page',
-    'access arguments' => array('access administration pages'),
+    'access arguments' => array('administer site configuration'),
     'file' => 'system.admin.inc',
     'file path' => drupal_get_path('module', 'system'),
   );

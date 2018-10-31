@@ -20,7 +20,7 @@
  */
 function slack_send_message($webhook_url, $message, $channel = '', $username = '', $icon_options = array(), $attachment_options = array()) {
   if (!$webhook_url) {
-    drupal_set_message('Please, enter the webhook value and try again', 'error');
+    drupal_set_message(t('Please, enter the webhook value and try again'), 'error');
     return FALSE;
   }
   if ($channel) {
