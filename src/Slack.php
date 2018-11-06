@@ -63,7 +63,7 @@ class Slack {
     $webhook_url = $config->get('slack_webhook_url');
 
     if (empty($webhook_url)) {
-      drupal_set_message($this->t('You need to enter a webhook!'), 'error');
+      $this->messenger()->addError($this->t('You need to enter a webhook!'));
       return FALSE;
     }
 

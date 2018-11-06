@@ -93,7 +93,7 @@ class SettingsForm extends ConfigFormBase {
       ],
     ];
     if (empty($config->get('slack_webhook_url'))) {
-      drupal_set_message($this->t('Slack sending message page will be available after you fill "Webhook URL" field'), 'warning');
+      $this->messenger()->addWarning($this->t('Slack sending message page will be available after you fill "Webhook URL" field'));
     }
     return parent::buildForm($form, $form_state);
   }

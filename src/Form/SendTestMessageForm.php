@@ -89,10 +89,10 @@ class SendTestMessageForm extends FormBase {
       $username = $config->get('slack_username');
       $response = $this->slackService->sendMessage($message, $channel, $username);
       if ($response && RedirectResponse::HTTP_OK == $response->getStatusCode()) {
-        drupal_set_message($this->t('Message was successfully sent!'));
+        $this->messenger()->addMessage($this->t('Message was successfully sent!'));
       }
       else {
-        drupal_set_message($this->t('Please check log messages for further details'), 'warning');
+        $this->messenger()->addWarning($this->t('Please check log messages for further details'));
       }
     }
   }
