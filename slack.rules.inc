@@ -139,54 +139,51 @@ function slack_rules_send_message_action($webhook_url, $channel, $username, $mes
   }
 
   $attachment_options = array();
-  $attachment = variable_get('slack_attachment_enabled');
-  if ($attachment) {
-    if (!$color) {
-      $color = slack_get_default_attachment_color();
-    }
-    if (!$pretext) {
-      $pretext = slack_get_default_attachment_pretext();
-    }
-    if (!$title) {
-      $title = slack_get_default_attachment_title();
-    }
-    if (!$title_link) {
-      $title_link = slack_get_default_attachment_link();
-    }
-    if (!$image_url) {
-      $image_url = slack_get_default_attachment_image_url();
-    }
-    if (!$author_name) {
-      $author_name = slack_get_default_attachment_author_name();
-    }
-    if (!$author_link) {
-      $author_link = slack_get_default_attachment_author_link();
-    }
-    if (!$author_icon) {
-      $author_icon = slack_get_default_attachment_author_icon();
-    }
-    if (!$footer) {
-      $footer = slack_get_default_attachment_footer();
-    }
-    if (!$footer_icon) {
-      $footer_icon = slack_get_default_attachment_footer_icon();
-    }
-    if (!$ts) {
-      $ts = slack_get_default_attachment_ts();
-    }
-    $attachment_options['color'] = $color;
-    $attachment_options['pretext'] = $pretext;
-    $attachment_options['title'] = $title;
-    $attachment_options['title_link'] = $title_link;
-    $attachment_options['image_url'] = $image_url;
-    $attachment_options['author_name'] = $author_name;
-    $attachment_options['author_link'] = $author_link;
-    $attachment_options['author_icon'] = $author_icon;
-    $attachment_options['footer'] = $footer;
-    $attachment_options['footer_icon'] = $footer_icon;
-    $attachment_options['ts'] = $ts;
-    $attachment_options['mrkdwn_in'] = slack_get_default_attachment_mrkdwn();
+  if (!$color) {
+    $color = slack_get_default_attachment_color();
   }
+  if (!$pretext) {
+    $pretext = slack_get_default_attachment_pretext();
+  }
+  if (!$title) {
+    $title = slack_get_default_attachment_title();
+  }
+  if (!$title_link) {
+    $title_link = slack_get_default_attachment_link();
+  }
+  if (!$image_url) {
+    $image_url = slack_get_default_attachment_image_url();
+  }
+  if (!$author_name) {
+    $author_name = slack_get_default_attachment_author_name();
+  }
+  if (!$author_link) {
+    $author_link = slack_get_default_attachment_author_link();
+  }
+  if (!$author_icon) {
+    $author_icon = slack_get_default_attachment_author_icon();
+  }
+  if (!$footer) {
+    $footer = slack_get_default_attachment_footer();
+  }
+  if (!$footer_icon) {
+    $footer_icon = slack_get_default_attachment_footer_icon();
+  }
+  if (!$ts) {
+    $ts = slack_get_default_attachment_ts();
+  }
+  $attachment_options['color'] = $color;
+  $attachment_options['pretext'] = $pretext;
+  $attachment_options['title'] = $title;
+  $attachment_options['title_link'] = $title_link;
+  $attachment_options['image_url'] = $image_url;
+  $attachment_options['author_name'] = $author_name;
+  $attachment_options['author_link'] = $author_link;
+  $attachment_options['author_icon'] = $author_icon;
+  $attachment_options['footer'] = $footer;
+  $attachment_options['footer_icon'] = $footer_icon;
+  $attachment_options['ts'] = $ts;
+  $attachment_options['mrkdwn_in'] = slack_get_default_attachment_mrkdwn();
 
   $icon_options = array(
     'icon' => $icon,
