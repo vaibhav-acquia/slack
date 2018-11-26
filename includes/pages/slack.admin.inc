@@ -184,6 +184,50 @@ function slack_configure_form($form, &$form_state) {
     ),
     '#states' => $attachment_state_toggle,
   );
+  $form['slack_files_control'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Files control'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['slack_files_control']['slack_token'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Slack Token'),
+    '#description' => t('Enter your token from a custom integration. It looks like xoxp-XXXXXXXXXXXX-XXXXXXXXXXXX-XXXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),
+    '#default_value' => variable_get('slack_token'),
+  );
+  $form['slack_files_control']['slack_file_types'] = array(
+    '#type' => 'checkboxes',
+    '#title' => t('File types'),
+    '#description' => t("Select file type which you want to automatically delete. If you want delete files of all types — don't select anything."),
+    '#options' => array(
+      'spaces' => t('Posts'),
+      'snippets' => t('Snippets'),
+      'images' => t('Image files'),
+      'gdocs' => t('Google docs'),
+      'zips' => t('Zip files'),
+      'pdfs' => t('PDF files'),
+    ),
+    '#default_value' => variable_get('slack_file_types'),
+  );
+  $form['slack_files_control']['slack_files_age_number'] = array(
+    '#type' => 'textfield',
+    '#title' => t('File age'),
+    '#size' => 8,
+    '#default_value' => slack_get_files_age_number(),
+  );
+  $form['slack_files_control']['slack_files_age_unit'] = array(
+    '#type' => 'select',
+    '#description' => t('Specify file expiration period. Files that exceed this period will be automatically deleted from slack'),
+    '#options' => array(
+      'minute' => t('minutes'),
+      'hour' => t('hours'),
+      'day' => t('days'),
+      'month' => t('months'),
+      'year' => t('years'),
+    ),
+    '#default_value' => slack_get_files_age_unit(),
+  );
 
   $form['#validate'][] = 'webhook_trim';
 

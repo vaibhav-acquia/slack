@@ -86,6 +86,11 @@ CONFIGURATION
        > Web Services > Slack > Send a Message. Enter a message and select "Send
        message." The message should be sent to the selected Slack channel or
        user.
+    10.If you want to automatically delete files from slack workspace, you
+       should provide token, which you can generate here:
+       https://api.slack.com/custom-integrations/legacy-tokens#legacy-info
+    11.You also can choose file types, which you want delete and expiration
+       period.
 
 
 MAINTAINERS

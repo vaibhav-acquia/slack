@@ -353,3 +353,25 @@ function slack_get_default_attachment_mrkdwn() {
   }
   return $attachment_mrkdwn;
 }
+
+/**
+ * Get Slack files age number.
+ *
+ * @return string
+ *   Get Slack files age number.
+ */
+function slack_get_files_age_number() {
+  $slack_files_age_number = variable_get('slack_files_age_number', 1);
+  return $slack_files_age_number;
+}
+
+/**
+ * Get Slack files age unit.
+ *
+ * @return string
+ *   Get Slack files age unit.
+ */
+function slack_get_files_age_unit() {
+  $slack_files_age_unit = variable_get('slack_files_age_unit', 'month');
+  return $slack_files_age_unit;
+}

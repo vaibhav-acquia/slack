@@ -28,4 +28,8 @@ function slack_uninstall() {
   variable_del('slack_attachment_footer_icon');
   variable_del('slack_attachment_ts');
   variable_del('slack_attachment_mrkdwn');
+  variable_del('slack_token');
+  variable_del('slack_file_types');
+  variable_del('slack_files_age_number');
+  variable_del('slack_files_age_unit');
 }

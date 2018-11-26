@@ -68,3 +68,108 @@ function slack_menu() {
   );
   return $items;
 }
+
+/**
+ * Implements hook_cron().
+ */
+function slack_cron() {
+  $slack_files_delete = DrupalQueue::get('slack_files_delete');
+
+  $types = '';
+  if ($filtered = array_filter(variable_get('slack_file_types'))) {
+    $types = implode(',', $filtered);
+  }
+  $query = array(
+    'token' => variable_get('slack_token'),
+    'ts_to' => strtotime('-' . slack_get_files_age_number() . ' ' . slack_get_files_age_unit()),
+    'types' => $types,
+  );
+  $files = slack_get_files_list($query);
+
+  if ($files['paging']['total'] !== 0) {
+    foreach ($files['files'] as $file) {
+      $slack_files_delete->createItem($file);
+    }
+  }
+}
+
+/**
+ * Implements hook_cron_queue_info().
+ */
+function slack_cron_queue_info() {
+  $queues['slack_files_delete'] = array(
+    'worker callback' => 'slack_delete_file',
+    'time' => 30,
+  );
+  return $queues;
+}
+
+/**
+ * Deletes file from slack.
+ *
+ * @param array $file
+ *   Array with file info, that was get from slack_get_files_list().
+ */
+function slack_delete_file(array $file) {
+  $delete = slack_send_request('files.delete', array('file' => $file['id']));
+  if ($delete['ok'] == TRUE) {
+    watchdog('Slack', '@fid (@filename) was deleted via cron.', array('@fid' => $file['id'], '@filename' => $file['name']));
+  }
+  else {
+    watchdog('Slack', '@fid (@filename) not deleted', array('@fid' => $file['id'], '@filename' => $file['name']), WATCHDOG_NOTICE, $file['permalink']);
+  }
+}
+
+/**
+ * Deletes file from slack.
+ *
+ * @param array $query
+ *   Array with query params.
+ */
+function slack_get_files_list(array $query) {
+  $files = slack_send_request('files.list', $query);
+
+  if ($files['ok'] == TRUE) {
+    // If more than 1 page, append to original call.
+    if ($files['paging']['pages'] > 1) {
+      for ($i = 2; $i <= $files['paging']['pages']; $i++) {
+        $query['page'] = $i;
+
+        $files_next_page = slack_send_request('files.list', $query);
+
+        if ($files_next_page['ok'] == TRUE) {
+          $files['paging']['count'] = $files['paging']['count'] + $files_next_page['paging']['count'];
+          $files['files'] = array_merge($files['files'], $files_next_page['files']);
+        }
+        else {
+          watchdog('Slack', '@page page error', array('@page' => $query['page']));
+        }
+      }
+
+      $files['paging']['pages'] = 1;
+    }
+
+    return $files;
+  }
+  else {
+    watchdog('Slack', '@page page error', array('@page' => $query['page']));
+  }
+
+  return FALSE;
+}
+
+/**
+ * Deletes file from slack.
+ *
+ * @param string $method
+ *   String containing slack api method.
+ * @param array $query
+ *   Array with query params.
+ */
+function slack_send_request($method, array $query) {
+  $query['token'] = variable_get('slack_token');
+  $url = 'https://slack.com/api/' . $method . '?' . drupal_http_build_query($query);
+  $response = drupal_http_request($url);
+
+  return json_decode($response->data, TRUE);
+}
