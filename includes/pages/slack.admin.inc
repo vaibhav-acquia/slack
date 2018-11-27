@@ -6,7 +6,7 @@
  */
 
 /**
- * Form validate handler for the currency settings form.
+ * Form validate handler for the slack settings form.
  */
 function webhook_trim($form, &$form_state) {
   $form_state['values']['slack_webhook_url'] = trim($form_state['values']['slack_webhook_url']);
@@ -193,7 +193,7 @@ function slack_configure_form($form, &$form_state) {
   $form['slack_files_control']['slack_token'] = array(
     '#type' => 'textfield',
     '#title' => t('Slack Token'),
-    '#description' => t('Enter your token from a custom integration. It looks like xoxp-XXXXXXXXXXXX-XXXXXXXXXXXX-XXXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),
+    '#description' => t('Enter your token from a custom integration or OAuth settings of your slack app. It looks like xoxp-XXXXXXXXXXXX-XXXXXXXXXXXX-XXXXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'),
     '#default_value' => variable_get('slack_token'),
   );
   $form['slack_files_control']['slack_file_types'] = array(
@@ -215,6 +215,7 @@ function slack_configure_form($form, &$form_state) {
     '#title' => t('File age'),
     '#size' => 8,
     '#default_value' => slack_get_files_age_number(),
+    '#element_validate' => array('element_validate_integer_positive'),
   );
   $form['slack_files_control']['slack_files_age_unit'] = array(
     '#type' => 'select',
