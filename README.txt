@@ -89,6 +89,16 @@ CONFIGURATION
     10.If you want to automatically delete files from slack workspace, you
        should provide token, which you can generate here:
        https://api.slack.com/custom-integrations/legacy-tokens#legacy-info
+       Or you can get more secure oauth tokens here:
+       - go to https://api.slack.com/apps (sign in into your slack account
+         of course)
+       - choose app that you will grant permission to file access
+       - select OAuth & Permissions in sidebar
+       - copy 'OAuth Access Token' into settings of slack module on your
+         drupal site
+       - scroll to 'Select Permission Scopes' and select files:read and
+         files:write:user permissions
+       - save changes and reinstall your app
     11.You also can choose file types, which you want delete and expiration
        period.
 
