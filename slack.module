@@ -73,22 +73,24 @@ function slack_menu() {
  * Implements hook_cron().
  */
 function slack_cron() {
-  $slack_files_delete = DrupalQueue::get('slack_files_delete');
+  if (variable_get('slack_token')) {
+    $slack_files_delete = DrupalQueue::get('slack_files_delete');
 
-  $types = '';
-  if ($filtered = array_filter(variable_get('slack_file_types'))) {
-    $types = implode(',', $filtered);
-  }
-  $query = array(
-    'token' => variable_get('slack_token'),
-    'ts_to' => strtotime('-' . slack_get_files_age_number() . ' ' . slack_get_files_age_unit()),
-    'types' => $types,
-  );
-  $files = slack_get_files_list($query);
+    $types = '';
+    if ($filtered = array_filter(variable_get('slack_file_types'))) {
+      $types = implode(',', $filtered);
+    }
+    $query = array(
+      'token' => variable_get('slack_token'),
+      'ts_to' => strtotime('-' . slack_get_files_age_number() . ' ' . slack_get_files_age_unit()),
+      'types' => $types,
+    );
+    $files = slack_get_files_list($query);
 
-  if ($files['paging']['total'] !== 0) {
-    foreach ($files['files'] as $file) {
-      $slack_files_delete->createItem($file);
+    if (!empty($files['files'])) {
+      foreach ($files['files'] as $file) {
+        $slack_files_delete->createItem($file);
+      }
     }
   }
 }
