@@ -6,6 +6,29 @@
  */
 
 /**
+ * Implements hook_install().
+ */
+function slack_install() {
+  variable_set('slack_webhook_url', '');
+  variable_set('slack_icon_type', 'none');
+  variable_set('slack_attachment_mrkdwn', array(
+    'text' => '0',
+    'pretext' => '0',
+    'fields' => '0',
+  ));
+  variable_set('slack_file_types', array(
+    'spaces' => '0',
+    'snippets' => '0',
+    'images' => '0',
+    'gdocs' => '0',
+    'zips' => '0',
+    'pdfs' => '0',
+  ));
+  variable_set('slack_files_age_number', '1');
+  variable_set('slack_files_age_unit', 'month');
+}
+
+/**
  * Implements hook_uninstall().
  */
 function slack_uninstall() {
