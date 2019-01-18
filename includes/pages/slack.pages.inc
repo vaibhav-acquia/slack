@@ -174,7 +174,7 @@ function slack_send_test_message_form_submit($form, &$form_state) {
 
   $result = slack_send_message($webhook_url, $message, $channel, '', $icon_options, $attachment_options);
   if (!$result) {
-    drupal_set_message(t("Message wasn't sent. Please, check slack module configuration."));
+    drupal_set_message(t("Message wasn't sent. Please, check slack module configuration."), 'error');
   }
   elseif (!isset($result->error) && $result->code == SLACK_CODE_OK) {
     drupal_set_message(t('Message was successfully sent.'));
