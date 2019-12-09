@@ -7,27 +7,42 @@ use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Exception\ConnectException;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Send messages to Slack.
  */
 class Slack {
 
+  use StringTranslationTrait;
+
   /**
+   * Config factory.
+   *
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   private $config;
 
   /**
+   * Http client.
+   *
    * @var \GuzzleHttp\ClientInterface
    */
   private $httpClient;
 
   /**
+   * Logger service.
+   *
    * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
    */
   private $logger;
+
+  /**
+   * The messenger service.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
 
   /**
    * Constructs a Slack object.
@@ -43,6 +58,7 @@ class Slack {
     $this->config = $config;
     $this->httpClient = $http_client;
     $this->logger = $logger;
+
   }
 
   /**
@@ -57,13 +73,15 @@ class Slack {
    *
    * @return bool|object
    *   Slack response.
+   *
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public function sendMessage($message, $channel = '', $username = '') {
     $config = $this->config->get('slack.settings');
     $webhook_url = $config->get('slack_webhook_url');
 
     if (empty($webhook_url)) {
-      $this->messenger()->addError($this->t('You need to enter a webhook!'));
+      $this->messenger->addError($this->t('You need to enter a webhook!'));
       return FALSE;
     }
 
@@ -142,13 +160,15 @@ class Slack {
    *     - icon_emoji: The bot icon displayed in the channel;
    *     - icon_url: The bot icon displayed in the channel.
    *
-   * @return object
+   * @return \Psr\Http\Message\ResponseInterface|bool
    *   Can contain:
    *                          success    fail         fail
    *     - data:                ok       No hooks     Invalid channel specified
    *     - status message:      OK       Not found    Server Error
    *     - code:                200      404          500
    *     - error:               -        Not found    Server Error
+   *
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
   protected function sendRequest($webhook_url, $message, array $message_options = []) {
     $headers = [
@@ -170,11 +190,6 @@ class Slack {
     }
     catch (RequestException $e) {
       $logger->error('Request error! It may appear if you entered the invalid Webhook value.');
-      watchdog_exception('slack', $e);
-      return FALSE;
-    }
-    catch (ConnectException $e) {
-      $logger->error('Connection error! Something wrong with your connection. Message was\'nt sent.');
       watchdog_exception('slack', $e);
       return FALSE;
     }

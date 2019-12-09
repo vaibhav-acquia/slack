@@ -37,6 +37,8 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 class SlackSendMessage extends RulesActionBase implements ContainerFactoryPluginInterface {
 
   /**
+   * Slack service.
+   *
    * @var \Drupal\slack\Slack
    */
   protected $slackService;
@@ -62,11 +64,13 @@ class SlackSendMessage extends RulesActionBase implements ContainerFactoryPlugin
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    /** @var \Drupal\slack\Slack $slack_service */
+    $slack_service = $container->get('slack.slack_service');
     return new static(
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('slack.slack_service')
+      $slack_service
     );
   }
 
@@ -74,11 +78,13 @@ class SlackSendMessage extends RulesActionBase implements ContainerFactoryPlugin
    * Send message to slack.
    *
    * @param string $message
-   *   The message to be sended.
+   *   The message to be sent.
    * @param string $channel
    *   The slack channel.
    * @param string $username
    *   The slack username.
+   *
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
   protected function doExecute($message, $channel = '', $username = '') {
     $this->slackService->sendMessage($message, $channel, $username);

@@ -80,6 +80,8 @@ class SendTestMessageForm extends FormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     if (empty($form_state->getRedirect())) {
