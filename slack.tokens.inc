@@ -6,7 +6,7 @@
  */
 
 /**
- * Implements hook_info().
+ * Implements hook_token_info().
  */
 function slack_token_info() {
 

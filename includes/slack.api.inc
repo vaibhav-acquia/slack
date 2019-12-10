@@ -130,7 +130,7 @@ function _slack_process_message($message) {
 }
 
 // Function above works only for first link.
-// TODO: test function below
+// @todo: test function below.
 /* function _slack_process_message($message) { */
 /*   $regexp = "<a\s[^>]*href=(\"??)([^\" >]*?)\\1[^>]*>(.*)<\/a>"; */
 /*   if (preg_match_all("/$regexp/siU", $message, $matches, PREG_SET_ORDER)) { */
