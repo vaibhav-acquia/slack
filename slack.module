@@ -70,6 +70,24 @@ function slack_menu() {
 }
 
 /**
+ * Implements hook_ctools_plugin_api().
+ */
+function slack_ctools_plugin_api($module, $api) {
+  if ($module == 'message_notify' && $api == 'notifier') {
+    return array('version' => 1);
+  }
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function slack_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'message_notify') {
+    return 'plugins/' . $plugin;
+  }
+}
+
+/**
  * Implements hook_cron().
  */
 function slack_cron() {
