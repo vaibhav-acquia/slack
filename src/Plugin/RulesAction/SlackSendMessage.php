@@ -14,7 +14,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
  *   id = "rules_slack_send_message",
  *   label = @Translation("Send message to Slack"),
  *   category = @Translation("Slack"),
- *   context = {
+ *   context_definitions = {
  *     "message" = @ContextDefinition("string",
  *       label = @Translation("Message"),
  *       description = @Translation("Specify the message, which should be sent to Slack."),
