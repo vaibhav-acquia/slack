@@ -2,7 +2,7 @@
 
 namespace Drupal\slack\Plugin\RulesAction;
 
-use Drupal\slack\Slack;
+use Drupal\slack\SlackInterface;
 use Drupal\rules\Core\RulesActionBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -39,7 +39,7 @@ class SlackSendMessage extends RulesActionBase implements ContainerFactoryPlugin
   /**
    * Slack service.
    *
-   * @var \Drupal\slack\Slack
+   * @var \Drupal\slack\SlackInterface
    */
   protected $slackService;
 
@@ -52,10 +52,10 @@ class SlackSendMessage extends RulesActionBase implements ContainerFactoryPlugin
    *   The plugin ID for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\slack\Slack $slack_service
+   * @param \Drupal\slack\SlackInterface $slack_service
    *   The Slack manager service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, Slack $slack_service) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, SlackInterface $slack_service) {
     $this->slackService = $slack_service;
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
@@ -64,7 +64,7 @@ class SlackSendMessage extends RulesActionBase implements ContainerFactoryPlugin
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    /** @var \Drupal\slack\Slack $slack_service */
+    /** @var \Drupal\slack\SlackInterface $slack_service */
     $slack_service = $container->get('slack.slack_service');
     return new static(
       $configuration,

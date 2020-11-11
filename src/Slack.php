@@ -4,15 +4,15 @@ namespace Drupal\slack;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Exception\RequestException;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Send messages to Slack.
  */
-class Slack {
+class Slack implements SlackInterface {
 
   use StringTranslationTrait;
 
@@ -62,19 +62,7 @@ class Slack {
   }
 
   /**
-   * Send message to the Slack.
-   *
-   * @param string $message
-   *   The message sent to the channel.
-   * @param string $channel
-   *   The channel in the Slack service to send messages.
-   * @param string $username
-   *   The bot name displayed in the channel.
-   *
-   * @return bool|object
-   *   Slack response.
-   *
-   * @throws \GuzzleHttp\Exception\GuzzleException
+   * {@inheritdoc}
    */
   public function sendMessage($message, $channel = '', $username = '') {
     $config = $this->config->get('slack.settings');

@@ -4,7 +4,7 @@ namespace Drupal\slack\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\slack\Slack;
+use Drupal\slack\SlackInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -18,14 +18,14 @@ class SendTestMessageForm extends FormBase {
   /**
    * Slack service.
    *
-   * @var \Drupal\slack\Slack
+   * @var \Drupal\slack\SlackInterface
    */
   protected $slackService;
 
   /**
    * {@inheritdoc}
    */
-  public function __construct(Slack $slack) {
+  public function __construct(SlackInterface $slack) {
     $this->slackService = $slack;
   }
 
