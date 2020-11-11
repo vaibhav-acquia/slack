@@ -4,6 +4,7 @@ namespace Drupal\slack;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ServerException;
@@ -53,12 +54,14 @@ class Slack implements SlackInterface {
    *   HTTP Client.
    * @param \Drupal\Core\Logger\LoggerChannelFactoryInterface $logger
    *   Logger.
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   Messenger service.
    */
-  public function __construct(ConfigFactoryInterface $config, ClientInterface $http_client, LoggerChannelFactoryInterface $logger) {
+  public function __construct(ConfigFactoryInterface $config, ClientInterface $http_client, LoggerChannelFactoryInterface $logger, MessengerInterface $messenger) {
     $this->config = $config;
     $this->httpClient = $http_client;
     $this->logger = $logger;
-
+    $this->messenger = $messenger;
   }
 
   /**
