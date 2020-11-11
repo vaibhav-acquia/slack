@@ -38,7 +38,7 @@ class SettingsForm extends ConfigFormBase {
     $config = $this->config('slack.settings');
 
     $form['slack_webhook_url'] = [
-      '#type' => 'textfield',
+      '#type' => 'url',
       '#title' => $this->t('Webhook URL'),
       '#description' => $this->t('Enter your Webhook URL from an Incoming WebHooks integration. It looks like https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYY/ZZZZZZZZZZZZZZZZZZZZZZZZ'),
       '#default_value' => $config->get('slack_webhook_url'),
@@ -80,7 +80,7 @@ class SettingsForm extends ConfigFormBase {
       ],
     ];
     $form['slack_icon_url'] = [
-      '#type' => 'textfield',
+      '#type' => 'url',
       '#title' => $this->t('Image URL'),
       '#default_value' => $config->get('slack_icon_url'),
       '#description' => $this->t('What icon would you use for your SlackBot?'),
