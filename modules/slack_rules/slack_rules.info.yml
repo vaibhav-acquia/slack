@@ -1,0 +1,8 @@
+name: 'Slack Rules'
+type: module
+description: 'Messaging through Rules.'
+core_version_requirement: ^8 || ^9
+package: Slack API
+dependencies:
+  - rules:rules
+  - slack:slack

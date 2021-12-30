@@ -1,0 +1,84 @@
+add slack app entities:
+  title: 'Create new Slack App entities'
+
+administer slack app entities:
+  title: 'Administer Slack App entities'
+  description: 'Allow to access the administration form to configure Slack App entities.'
+  restrict access: true
+
+delete slack app entities:
+  title: 'Delete Slack App entities'
+
+edit slack app entities:
+  title: 'Edit Slack App entities'
+
+view published slack app entities:
+  title: 'View published Slack App entities'
+
+view unpublished slack app entities:
+  title: 'View unpublished Slack App entities'
+
+view all slack app revisions:
+  title: 'View all Slack App revisions'
+
+revert all slack app revisions:
+  title: 'Revert all Slack App revisions'
+  description: 'Role requires permission <em>view Slack App revisions</em> and <em>edit rights</em> for slack app entities in question or <em>administer slack app entities</em>.'
+
+delete all slack app revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Slack App revisions</em> and <em>delete rights</em> for slack app entities in question or <em>administer slack app entities</em>.'
+
+add slack request content entities:
+  title: 'Create new Slack request content entities'
+
+administer slack request content entities:
+  title: 'Administer Slack request content entities'
+  description: 'Allow to access the administration form to configure Slack request content entities.'
+  restrict access: true
+
+delete slack request content entities:
+  title: 'Delete Slack request content entities'
+
+edit slack request content entities:
+  title: 'Edit Slack request content entities'
+
+view published slack request content entities:
+  title: 'View published Slack request content entities'
+
+view unpublished slack request content entities:
+  title: 'View unpublished Slack request content entities'
+
+view all slack request content revisions:
+  title: 'View all Slack request content revisions'
+
+revert all slack request content revisions:
+  title: 'Revert all Slack request content revisions'
+  description: 'Role requires permission <em>view Slack request content revisions</em> and <em>edit rights</em> for slack request content entities in question or <em>administer slack request content entities</em>.'
+
+delete all slack request content revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Slack request content revisions</em> and <em>delete rights</em> for slack request content entities in question or <em>administer slack request content entities</em>.'
+
+permission_callbacks:
+  - \Drupal\slack\SlackRequestContentPermissions::generatePermissions
+add slack sender entities:
+  title: 'Create new Slack sender entities'
+
+administer slack sender entities:
+  title: 'Administer Slack sender entities'
+  description: 'Allow to access the administration form to configure Slack sender entities.'
+  restrict access: true
+
+delete slack sender entities:
+  title: 'Delete Slack sender entities'
+
+edit slack sender entities:
+  title: 'Edit Slack sender entities'
+
+view published slack sender entities:
+  title: 'View published Slack sender entities'
+
+view unpublished slack sender entities:
+  title: 'View unpublished Slack sender entities'
+

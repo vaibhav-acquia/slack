@@ -1,0 +1,7 @@
+services:
+  slack_rules.uninstall_validator.slack_rules:
+    class: 'Drupal\slack_rules\UninstallValidator\SlackRulesUninstallValidator'
+    tags:
+      - { name: 'module_install.uninstall_validator' }
+    arguments: ['@plugin.manager.rules_action', '@entity_type.manager']
+    lazy: 'true'

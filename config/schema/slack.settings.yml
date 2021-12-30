@@ -1,15 +1,1 @@
-slack.settings:
-  type: config_object
-  mapping:
-    slack_webhook_url:
-      type: uri
-    slack_channel:
-      type: string
-    slack_username:
-      type: string
-    slack_icon_type:
-      type: string
-    slack_icon_emoji:
-      type: string
-    slack_icon_url:
-      type: uri
+slack_icon_type: 'none'

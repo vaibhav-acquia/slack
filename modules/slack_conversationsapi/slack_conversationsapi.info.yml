@@ -1,0 +1,7 @@
+name: 'Slack Conversations Api'
+type: module
+description: 'Implements Conversations Api for Slack'
+core_version_requirement: ^8 || ^9
+package: 'Slack API'
+dependencies:
+  - slack

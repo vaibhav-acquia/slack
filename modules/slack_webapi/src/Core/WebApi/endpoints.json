@@ -1,0 +1,134 @@
+{
+	"api.test": {
+    "method": "GET",
+    "path": "api.test",
+    "title": "Api test",
+    "description": "Checks API calling code.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    },
+    "arguments": {
+      "error": {
+        "type": "textfield",
+        "title": "Error",
+        "description": "Error response to return",
+        "required": false
+      }
+    }
+  },
+	"apps.uninstall": {
+		"method": "GET",
+		"path": "apps.uninstall",
+    "title": "Apps uninstall",
+    "description": "Uninstalls your app from a workspace.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded"
+    },
+    "arguments": {
+      "client_id": {
+        "type": "textfield",
+        "title": "Client ID",
+        "description": "Issued when you created your application.",
+        "required": true
+      },
+      "client_secret": {
+        "type": "textfield",
+        "title": "Client secret",
+        "description": "Issued when you created your application.",
+        "required": true
+      }
+    }
+	},
+	"auth.revoke": {
+		"method": "GET",
+		"path": "auth.revoke",
+    "title": "Auth revoke",
+    "description": "Revokes a token.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded"
+    },
+    "arguments": {
+      "test": {
+        "type": "checkbox",
+        "title": "Test",
+        "description": "Setting this parameter to 1 triggers a testing mode where the specified token will not actually be revoked.",
+        "required": false
+      }
+    }
+  },
+	"auth.test": {
+		"method": "GET",
+		"path": "auth.test",
+    "title": "Auth test",
+    "description": "Checks authentication & identity.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    }
+  },
+	"bots.info": {
+		"method": "GET",
+		"path": "bots.info",
+    "title": "Bots info",
+    "description": "Gets information about a bot user.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded"
+    },
+    "arguments": {
+      "bot": {
+        "type": "textfield",
+        "title": "Bot",
+        "description": "Bot user to get info on",
+        "required": false
+      },
+      "team_id": {
+        "type": "textfield",
+        "title": "Team ID",
+        "description": "encoded team id or enterprise id where the bot exists, required if org token is used",
+        "required": false
+      }
+    }
+	},
+	"oauth.access": {
+    "method": "GET",
+    "path": "oauth.access",
+    "title": "Oauth access",
+    "description": "Exchanges a temporary OAuth verifier code for an access token.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded"
+    },
+    "arguments": {
+      "client_id": {
+        "type": "textfield",
+        "title": "Client ID",
+        "description": "Issued when you created your application.",
+        "required": false
+      },
+      "client_secret": {
+        "type": "textfield",
+        "title": "Client secret",
+        "description": "Issued when you created your application.",
+        "required": false
+      },
+      "code": {
+        "type": "textfield",
+        "title": "Code",
+        "description": "The code param returned via the OAuth callback.",
+        "required": false
+      },
+      "redirect_uri": {
+        "type": "textfield",
+        "title": "Redirect URI",
+        "description": "This must match the originally submitted URI (if one was sent).",
+        "required": false
+      },
+      "single_channel": {
+        "type": "checkbox",
+        "title": "Single channel",
+        "description": "Request the user to add your app only to a single channel. Only valid with a legacy workspace app.",
+        "required": false
+      }
+    }
+  }
+}

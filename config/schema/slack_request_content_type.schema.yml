@@ -1,0 +1,12 @@
+slack.slack_request_content_type.*:
+  type: config_entity
+  label: 'Slack request content type config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string

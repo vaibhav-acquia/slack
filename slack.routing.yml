@@ -7,20 +7,20 @@ slack.admin_home:
   requirements:
     _permission: 'administer site configuration'
 
-slack.admin_settings:
-  path: '/admin/config/services/slack/config'
+slack.admin_webhook:
+  path: '/admin/config/services/slack/webhook'
   defaults:
-    _title: 'Slack - Configuration'
-    _description: 'Adjust Slack settings.'
-    _form: '\Drupal\slack\Form\SettingsForm'
+    _title: 'Slack - Webhook configuration'
+    _description: 'Adjust Slack webhook settings.'
+    _form: '\Drupal\slack\Form\WebhooksForm'
   requirements:
     _permission: 'administer site configuration'
 
-slack.admin_test:
-  path: '/admin/config/services/slack/test'
+slack.admin_check:
+  path: '/admin/config/services/slack/test/request'
   defaults:
-    _title: 'Slack - Send a test message'
-    _description: 'Allows to send a test message to the Slack.'
-    _form: '\Drupal\slack\Form\SendTestMessageForm'
+    _title: "Slack - Send a test request"
+    _description: 'Allows to send a requests to the Slack.'
+    _form: '\Drupal\slack\Form\SendTestRequestForm'
   requirements:
     _permission: 'administer site configuration'

@@ -1,11 +1,76 @@
-slack.admin_settings:
-  title: 'Configuration'
-  weight: 0
-  route_name: slack.admin_settings
+slack.admin_check:
+  title: 'Send a test request'
+  weight: 2
+  route_name: slack.admin_check
   base_route: slack.admin_settings
 
-slack.admin_test:
-  title: 'Send test message'
-  weight: 1
-  route_name: slack.admin_test
-  base_route: slack.admin_settings
+# Slack App routing definition
+slack_app.settings_tab:
+  route_name: slack_app.settings
+  title: 'Settings'
+  base_route: slack_app.settings
+
+entity.slack_app.canonical:
+  route_name: entity.slack_app.canonical
+  base_route: entity.slack_app.canonical
+  title: 'View'
+
+entity.slack_app.edit_form:
+  route_name: entity.slack_app.edit_form
+  base_route: entity.slack_app.canonical
+  title: 'Edit'
+
+entity.slack_app.version_history:
+  route_name: entity.slack_app.version_history
+  base_route: entity.slack_app.canonical
+  title: 'Revisions'
+
+entity.slack_app.delete_form:
+  route_name:  entity.slack_app.delete_form
+  base_route:  entity.slack_app.canonical
+  title: 'Delete'
+  weight: 10
+
+# Slack request content routing definition
+entity.slack_request_content.canonical:
+  route_name: entity.slack_request_content.canonical
+  base_route: entity.slack_request_content.canonical
+  title: 'View'
+
+entity.slack_request_content.edit_form:
+  route_name: entity.slack_request_content.edit_form
+  base_route: entity.slack_request_content.canonical
+  title: 'Edit'
+
+entity.slack_request_content.version_history:
+  route_name: entity.slack_request_content.version_history
+  base_route: entity.slack_request_content.canonical
+  title: 'Revisions'
+
+entity.slack_request_content.delete_form:
+  route_name:  entity.slack_request_content.delete_form
+  base_route:  entity.slack_request_content.canonical
+  title: 'Delete'
+  weight: 10
+
+# Slack sender routing definition
+slack_sender.settings_tab:
+  route_name: slack_sender.settings
+  title: 'Settings'
+  base_route: slack_sender.settings
+
+entity.slack_sender.canonical:
+  route_name: entity.slack_sender.canonical
+  base_route: entity.slack_sender.canonical
+  title: 'View'
+
+entity.slack_sender.edit_form:
+  route_name: entity.slack_sender.edit_form
+  base_route: entity.slack_sender.canonical
+  title: 'Edit'
+
+entity.slack_sender.delete_form:
+  route_name:  entity.slack_sender.delete_form
+  base_route:  entity.slack_sender.canonical
+  title: 'Delete'
+  weight: 10

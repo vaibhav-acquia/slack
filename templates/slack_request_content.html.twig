@@ -1,0 +1,22 @@
+{#
+/**
+ * @file slack_request_content.html.twig
+ * Default theme implementation to present Slack request content data.
+ *
+ * This template is used when viewing Slack request content pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_slack_request_content()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('slack_request_content') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

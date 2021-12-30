@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the slack module.
+ */
+
+/**
+ * Install the Slack Rules module if the RulesActions plugin using on the site.
+ *
+ * The RulesAction Plugin was migrate to separate submodule.
+ * So if you used this plugin before update
+ * then submodule Slack Rules should be enabled.
+ */
+function slack_update_8201() {
+  $moduleHandler = \Drupal::service('module_handler');
+  if (!$moduleHandler->moduleExists('rules') || $moduleHandler->moduleExists('slack_rules')) {
+    return;
+  }
+  $plugin_id = 'rules_slack_send_message';
+  $values = [
+    'expression' => [
+      'actions' => [
+        'actions' => [
+          'action_id' => $plugin_id,
+        ]
+      ]
+    ]
+  ];
+  $reaction_rule_storage = \Drupal::entityTypeManager()->getStorage('rules_reaction_rule');
+  $reaction_rule_config = $reaction_rule_storage->loadByProperties($values);
+  if (!empty($reaction_rule_config)) {
+    // Install 'rules' module.
+    \Drupal::service('module_installer')->install(['slack_rules'], FALSE);
+  }
+}

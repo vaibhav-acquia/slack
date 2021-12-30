@@ -34,7 +34,17 @@ This module requires the following outside of Drupal core:
 
  * Slack account - https://your-team-domain.slack.com
 
-A webhook integration is required.
+A slack app or webhook integration is required. Althougth webhooks considered
+deprecated by Slack they are still can be used.
+For app:
+    1. Navigate to https://api.slack.com/apps/ and press "Create new app".
+    2. Select appropriate variant to create it, fill name and workspace.
+    3. After submit, you will be rediracted to app page, select "OAuth &
+       Permissions" in menu on left.
+    4. Setup scopes.
+    5. Return back to "Basic Information" page and click "Install to workspace".
+
+For webhooks:
     1. Navigate to
        https://your-team-domain.slack.com/apps/manage/custom-integrations.
     2. Select "Incoming Webhooks" and "Add Configuration." Choose a channel
@@ -43,6 +53,7 @@ A webhook integration is required.
     3. Upon saving, the user will be redirected to a page with the Webhook URL.
 
 For more information:
+ * https://api.slack.com/scopes
  * https://api.slack.com/custom-integrations
  * https://api.slack.com/incoming-webhooks
 
@@ -70,6 +81,23 @@ INSTALLATION
 CONFIGURATION
 -------------
 
+App configuration:
+    1. Navigate to "Administration > Extend" and enable the module and any API
+       submodules you intend to use.
+    3. Navigate to "Administration > Configuration > Web Services > Slack >
+       Slack App list" and click "Add Slack App".
+    3. Give it meaningful name and fill fields with information from "Basic
+       Information" and "OAuth & Permissions" pages in Slack App.
+    4. Save app.
+    5. You can also add any fields you want on "Administration > Configuration >
+       Web Services > Slack > Slack App Entity settings" in case you want to
+       store extra information.
+    9. To test the messaging system, navigate to "Administration > Configuration
+       > Web Services > Slack > Send test request". Enter an app name, select
+       API and method you want to test, fill required fields that appeared
+       below and press "Send message." The message should be sent using
+       credentials and from selected app.
+Webhooks configuration:
     1. Navigate to Administration > Extend and enable the module.
     3. Navigate to Administration > Configuration > Web Services > Slack >
        Configuration to configure the Slack module.

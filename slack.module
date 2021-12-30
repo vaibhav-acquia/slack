@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * Contains slack.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function slack_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the slack module.
+    case 'help.page.slack':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function slack_theme() {
+  $theme = [];
+  $theme['slack_request_content'] = [
+    'render element' => 'elements',
+    'file' => 'slack_request_content.page.inc',
+    'template' => 'slack_request_content',
+  ];
+  $theme['slack_request_content_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'slack_request_content.page.inc',
+  ];
+  return $theme;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function slack_theme_suggestions_slack_request_content(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#slack_request_content'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'slack_request_content__' . $sanitized_view_mode;
+  $suggestions[] = 'slack_request_content__' . $entity->bundle();
+  $suggestions[] = 'slack_request_content__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'slack_request_content__' . $entity->id();
+  $suggestions[] = 'slack_request_content__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}

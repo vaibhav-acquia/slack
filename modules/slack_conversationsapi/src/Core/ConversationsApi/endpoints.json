@@ -1,0 +1,342 @@
+{
+  "conversations.archive": {
+  "method": "GET",
+		"path": "conversations.archive",
+    "title": "Archive conversations",
+    "description": "Closes a direct message or multi-person direct message.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel ID",
+        "description": "ID of conversation to archive.",
+        "required": true
+      }
+    }
+	},
+	"conversations.close": {
+		"method": "GET",
+		"path": "conversations.close",
+    "title": "Close conversations",
+    "description": "Closes a direct message or multi-person direct message.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel",
+        "description": "Conversation to close.",
+        "required": true
+      }
+    }
+	},
+	"conversations.create": {
+		"method": "GET",
+		"path": "conversations.create",
+    "title": "Create conversations",
+    "description": "Create a public or private channel.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    },
+    "arguments": {
+      "name": {
+        "type": "textfield",
+        "title": "Channel Name",
+        "description": "Name of the public or private channel to create.",
+        "required": true
+      }
+    }
+	},
+	"conversations.history": {
+		"method": "GET",
+		"path": "conversations.history",
+    "title": "Conversations history",
+    "description": "Fetches a conversation's history of messages and events.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel ID",
+        "description": "Conversation ID to fetch history for.",
+        "required": true
+      }
+    }
+	},
+	"conversations.info": {
+		"method": "GET",
+		"path": "conversations.info",
+    "title": "Conversations INFO",
+    "description": "Retrieve information about a conversation.\n\n",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel ID",
+        "description": "Conversation ID to learn more about.",
+        "required": true
+      }
+    }
+	},
+	"conversations.invite": {
+		"method": "GET",
+		"path": "conversations.invite",
+    "title": "Conversation invite",
+    "description": "This method invites 1-1000 users to a public or private channel. The calling user must be a member of the channel.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel",
+        "description": "The ID of the public or private channel to invite user(s) to.",
+        "required": true
+      },
+      "users": {
+        "type": "textarea",
+        "title": "Users",
+        "description": "A comma separated list of user IDs. Up to 1000 users may be listed.",
+        "required": true
+      }
+    }
+	},
+	"conversations.join": {
+		"method": "GET",
+		"path": "conversations.join",
+    "title": "Conversation join",
+    "description": "Joins an existing conversation.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel",
+        "description": "The ID of the public or private channel to invite user(s) to.",
+        "required": true
+      }
+    }
+  },
+	"conversations.kick": {
+		"method": "GET",
+		"path": "conversations.kick",
+    "title": "Conversation kick",
+    "description": "Removes a user from a conversation.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel ID",
+        "description": "ID of conversation to remove user from.",
+        "required": true
+      },
+      "user": {
+        "type": "textfield",
+        "title": "User ID",
+        "description": "User ID to be removed.",
+        "required": true
+      }
+    }
+	},
+	"conversations.leave": {
+		"method": "GET",
+		"path": "conversations.leave",
+    "title": "Conversation leave",
+    "description": "Leaves a conversation.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel ID",
+        "description": "ID of conversation to remove user from.",
+        "required": true
+      }
+    }
+	},
+	"conversations.list": {
+		"method": "GET",
+		"path": "conversations.list",
+    "title": "Conversation list",
+    "description": "Lists all channels in a Slack team.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded"
+    }
+	},
+	"conversations.members": {
+		"method": "GET",
+		"path": "conversations.members",
+    "title": "Conversation members",
+    "description": "Retrieve members of a conversation.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel ID",
+        "description": "ID of the conversation to retrieve members for",
+        "required": true
+      }
+    }
+	},
+	"conversations.open": {
+		"method": "GET",
+		"path": "conversations.open",
+    "title": "Conversation open",
+    "description": "Opens or resumes a direct message or multi-person direct message.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel",
+        "description": "Resume a conversation by supplying an im or mpim's ID. Or provide the users field instead.",
+        "required": false
+      },
+      "users": {
+        "type": "textarea",
+        "title": "Users",
+        "description": "Comma separated lists of users. If only one user is included, this creates a 1:1 DM. The ordering of the users is preserved whenever a multi-person direct message is returned.",
+        "required": false
+      },
+      "return_im": {
+        "type": "checkbox",
+        "title": "Return IM",
+        "description": "Boolean, indicates you want the full IM channel definition in the response.",
+        "required": false
+      }
+    }
+	},
+	"conversations.rename": {
+		"method": "GET",
+		"path": "conversations.rename",
+    "title": "Rename conversation",
+    "description": "Renames a conversation.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel ID",
+        "description": "ID of conversation to rename.",
+        "required": true
+      },
+      "name": {
+        "type": "textfield",
+        "title": "New Name",
+        "description": "New name for conversation.",
+        "required": true
+      }
+    }
+	},
+	"conversations.replies": {
+		"method": "GET",
+		"path": "conversations.replies",
+    "title": "Get replies",
+    "description": "Retrieve a thread of messages posted to a conversation.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel ID",
+        "description": "ID of conversation to rename.",
+        "required": true
+      },
+      "ts": {
+        "type": "textfield",
+        "title": "Parent message ID",
+        "description": "Unique identifier of a thread's parent message. ts must be the timestamp of an existing message with 0 or more replies.",
+        "required": true
+      }
+    }
+	},
+	"conversations.setPurpose": {
+		"method": "GET",
+		"path": "conversations.setPurpose",
+    "title": "Set purpose",
+    "description": "This method is used to change the purpose of a conversation, cannot be called with bot user",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Conversation ID",
+        "description": "Conversation to set the purpose of.",
+        "required": true
+      },
+      "purpose": {
+        "type": "textfield",
+        "title": "Purpose",
+        "description": "A new, specialer purpose.",
+        "required": true
+      }
+    }
+	},
+	"conversations.setTopic": {
+		"method": "GET",
+		"path": "conversations.setTopic",
+    "title": "Set topic",
+    "description": "Sets the topic for a conversation. This method cannot be called with bot user",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel ID",
+        "description": "Conversation to set the topic of.",
+        "required": true
+      },
+      "topic": {
+        "type": "textfield",
+        "title": "Topic",
+        "description": "The new topic string. Does not support formatting or linkification.",
+        "required": true
+      }
+    }
+	},
+	"conversations.unarchive": {
+		"method": "GET",
+		"path": "conversations.unarchive",
+    "title": "Un Archive",
+    "description": "Reverses conversation archival.",
+    "content_type": {
+      "default": "application/x-www-form-urlencoded",
+      "json": "application/json; charset=utf-8"
+    },
+    "arguments": {
+      "channel": {
+        "type": "textfield",
+        "title": "Channel ID",
+        "description": "ID of conversation to unarchive.",
+        "required": true
+      }
+    }
+	}
+}

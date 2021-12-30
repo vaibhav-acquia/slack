@@ -1,4 +1,10 @@
 services:
-  slack.slack_service:
-    class: Drupal\slack\Slack
-    arguments: ['@config.factory', '@http_client', '@logger.factory', '@messenger']
+  plugin.manager.slack_api.processor:
+    class: Drupal\slack\Core\SlackApi\SlackApiManager
+    parent: default_plugin_manager
+  slack_api.method_form_builder:
+    class: Drupal\slack\Service\SlackFormMethodsBuilder
+    arguments: ['@entity_type.manager', '@messenger', '@plugin.manager.slack_api.processor']
+  slack.slack_send_request:
+    class: Drupal\slack\Service\SlackSendRequest
+    arguments: [ '@http_client', '@logger.factory', '@messenger' ]
