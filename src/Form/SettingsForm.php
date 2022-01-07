@@ -92,6 +92,12 @@ class SettingsForm extends ConfigFormBase {
         ],
       ],
     ];
+    $form['slack_unfurl_links'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Unfurl Links'),
+      '#default_value' => $config->get('slack_unfurl_links') ?? TRUE,
+      '#description' => $this->t('Display simple preview for links in posted messages'),
+    ];
     if (empty($config->get('slack_webhook_url'))) {
       $this->messenger()->addWarning($this->t('Slack sending message page will be available after you fill "Webhook URL" field'));
     }
@@ -110,6 +116,7 @@ class SettingsForm extends ConfigFormBase {
       ->set('slack_icon_type', $form_state->getValue('slack_icon_type'))
       ->set('slack_icon_emoji', $form_state->getValue('slack_icon_emoji'))
       ->set('slack_icon_url', $form_state->getValue('slack_icon_url'))
+      ->set('slack_unfurl_links', $form_state->getValue('slack_unfurl_links'))
       ->save();
     parent::submitForm($form, $form_state);
   }
