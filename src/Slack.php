@@ -131,6 +131,10 @@ class Slack implements SlackInterface {
     }
     $message_options['as_user'] = TRUE;
 
+    if (!empty($config->get('slack_unfurl_links'))) {
+      $message_options['unfurl_links'] = (bool) $config->get('slack_unfurl_links');
+    }
+
     return [
       'webhook_url' => $webhook_url,
       'message_options' => $message_options,
