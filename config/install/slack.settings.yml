@@ -4,3 +4,4 @@ slack_username: ''
 slack_icon_type: none
 slack_icon_emoji: ''
 slack_icon_url: ''
+slack_unfurl_links: true
