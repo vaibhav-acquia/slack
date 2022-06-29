@@ -37,13 +37,32 @@ class SettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('slack.settings');
 
+    $form['info'] = [
+      '#type' => 'item',
+      '#title' => $this->t('About webhook'),
+      '#markup' => $this->t('You should provide a "Webhook URL" or a "Key Machine name" (requires key module) in order to send messages.'),
+    ];
     $form['slack_webhook_url'] = [
       '#type' => 'url',
       '#title' => $this->t('Webhook URL'),
       '#description' => $this->t('Enter your Webhook URL from an Incoming WebHooks integration. It looks like https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYY/ZZZZZZZZZZZZZZZZZZZZZZZZ'),
       '#default_value' => $config->get('slack_webhook_url'),
-      '#required' => TRUE,
     ];
+    if (\Drupal::moduleHandler()->moduleExists('key')) {
+      $options = [];
+      $options[''] = "Select a key";
+      $keys = \Drupal::service('key.repository')->getKeys();
+      foreach ($keys as $key => $value) {
+        $options[$key] = $key;
+      }
+      $form['slack_webhook_key'] = [
+        '#type' => 'select',
+        '#title' => $this->t('Key Machine name'),
+        '#options' => $options,
+        '#default_value' => $config->get('slack_webhook_key'),
+      ];
+    }
+
     $form['slack_channel'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Default channel'),
@@ -105,6 +124,7 @@ class SettingsForm extends ConfigFormBase {
     $config = $this->config('slack.settings');
     $config
       ->set('slack_webhook_url', trim($form_state->getValue('slack_webhook_url')))
+      ->set('slack_webhook_key', trim($form_state->getValue('slack_webhook_key')))
       ->set('slack_channel', $form_state->getValue('slack_channel'))
       ->set('slack_username', $form_state->getValue('slack_username'))
       ->set('slack_icon_type', $form_state->getValue('slack_icon_type'))

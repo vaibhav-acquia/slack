@@ -70,12 +70,19 @@ class Slack implements SlackInterface {
   public function sendMessage($message, $channel = '', $username = '') {
     $config = $this->config->get('slack.settings');
     $webhook_url = $config->get('slack_webhook_url');
-
     if (empty($webhook_url)) {
-      $this->messenger->addError($this->t('You need to enter a webhook!'));
-      return FALSE;
+        if(empty($config->get('slack_webhook_key')) || !\Drupal::moduleHandler()->moduleExists('key')) {
+          $this->messenger->addError($this->t('You need to enter a webhook or a webhook key and have key module enabled!'));
+          return FALSE;
+        }else{
+          $key = \Drupal::service('key.repository')->getKey($config->get('slack_webhook_key'));
+          if(empty($key)) {
+            $this->messenger->addError($this->t('The key provided does not exist'));
+            return FALSE;
+          }
+          $webhook_url = $key->getKeyValue();
+        }
     }
-
     $this->logger->get('slack')
       ->info('Sending message "@message" to @channel channel as "@username"', [
         '@message' => $message,
