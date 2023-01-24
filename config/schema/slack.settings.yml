@@ -3,13 +3,22 @@ slack.settings:
   mapping:
     slack_webhook_url:
       type: uri
+      label: 'Webhook URL'
     slack_channel:
       type: string
+      label: 'Default channel'
     slack_username:
       type: string
+      label: 'Default username'
     slack_icon_type:
       type: string
+      label: 'Type of image'
     slack_icon_emoji:
       type: string
+      label: 'Emoji code'
     slack_icon_url:
       type: uri
+      label: 'Image URL'
+    slack_link_names:
+      type: boolean
+      label: 'Link names'
