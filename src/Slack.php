@@ -170,7 +170,10 @@ class Slack implements SlackInterface {
     $logger = $this->logger->get('slack');
 
     try {
-      $response = $this->httpClient->request('POST', $webhook_url, ['headers' => $headers, 'body' => $sending_data]);
+      $response = $this->httpClient->request('POST', $webhook_url, [
+        'headers' => $headers,
+        'body' => $sending_data,
+      ]);
       $logger->info('Message was successfully sent!');
       return $response;
     }

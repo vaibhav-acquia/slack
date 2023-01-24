@@ -6,11 +6,9 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class SettingsForm.
+ * Builds the configuration form for slack integration.
  *
  * @package Drupal\slack\Form
- *
- * @ingroup slack
  */
 class SettingsForm extends ConfigFormBase {
 
