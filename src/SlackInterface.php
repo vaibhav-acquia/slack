@@ -16,12 +16,15 @@ interface SlackInterface {
    *   The channel in the Slack service to send messages.
    * @param string $username
    *   The bot name displayed in the channel.
+   * @param string|null $webhook_url
+   *   The webhook url to use. This overrides the sitewide value in
+   *   `slack.settings`.
    *
    * @return bool|object
    *   Slack response.
    *
    * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  public function sendMessage($message, $channel = '', $username = '');
+  public function sendMessage($message, $channel = '', $username = '', string $webhook_url = NULL);
 
 }

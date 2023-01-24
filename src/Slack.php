@@ -22,21 +22,21 @@ class Slack implements SlackInterface {
    *
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
-  private $config;
+  protected $config;
 
   /**
    * Http client.
    *
    * @var \GuzzleHttp\ClientInterface
    */
-  private $httpClient;
+  protected $httpClient;
 
   /**
    * Logger service.
    *
    * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
    */
-  private $logger;
+  protected $logger;
 
   /**
    * The messenger service.
@@ -67,9 +67,9 @@ class Slack implements SlackInterface {
   /**
    * {@inheritdoc}
    */
-  public function sendMessage($message, $channel = '', $username = '') {
+  public function sendMessage($message, $channel = '', $username = '', string $webhook_url = NULL) {
     $config = $this->config->get('slack.settings');
-    $webhook_url = $config->get('slack_webhook_url');
+    $webhook_url = $webhook_url ?: $config->get('slack_webhook_url');
     if (empty($webhook_url)) {
         if(empty($config->get('slack_webhook_key')) || !\Drupal::moduleHandler()->moduleExists('key')) {
           $this->messenger->addError($this->t('You need to enter a webhook or a webhook key and have key module enabled!'));
@@ -138,6 +138,8 @@ class Slack implements SlackInterface {
     }
     $message_options['as_user'] = TRUE;
 
+    $message_options['link_names'] = (bool) $config->get('slack_link_names');
+
     return [
       'webhook_url' => $webhook_url,
       'message_options' => $message_options,
@@ -177,7 +179,10 @@ class Slack implements SlackInterface {
     $logger = $this->logger->get('slack');
 
     try {
-      $response = $this->httpClient->request('POST', $webhook_url, ['headers' => $headers, 'body' => $sending_data]);
+      $response = $this->httpClient->request('POST', $webhook_url, [
+        'headers' => $headers,
+        'body' => $sending_data,
+      ]);
       $logger->info('Message was successfully sent!');
       return $response;
     }

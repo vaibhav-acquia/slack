@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * Class SendTestMessageForm.
+ * Builds the configuration form tab for testing slack integration.
  *
  * @package Drupal\slack\Form
  */

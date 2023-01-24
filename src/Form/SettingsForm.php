@@ -6,11 +6,9 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class SettingsForm.
+ * Builds the configuration form for slack integration.
  *
  * @package Drupal\slack\Form
- *
- * @ingroup slack
  */
 class SettingsForm extends ConfigFormBase {
 
@@ -111,6 +109,12 @@ class SettingsForm extends ConfigFormBase {
         ],
       ],
     ];
+    $form['slack_link_names'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Link names?'),
+      '#description' => $this->t('Should names be linked in messages? See https://api.slack.com/methods/chat.postMessage#arg_link_names'),
+      '#default_value' => $config->get('slack_link_names'),
+    ];
     if (empty($config->get('slack_webhook_url'))) {
       $this->messenger()->addWarning($this->t('Slack sending message page will be available after you fill "Webhook URL" field'));
     }
@@ -130,6 +134,7 @@ class SettingsForm extends ConfigFormBase {
       ->set('slack_icon_type', $form_state->getValue('slack_icon_type'))
       ->set('slack_icon_emoji', $form_state->getValue('slack_icon_emoji'))
       ->set('slack_icon_url', $form_state->getValue('slack_icon_url'))
+      ->set('slack_link_names', $form_state->getValue('slack_link_names'))
       ->save();
     parent::submitForm($form, $form_state);
   }
