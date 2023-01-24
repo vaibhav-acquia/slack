@@ -67,9 +67,9 @@ class Slack implements SlackInterface {
   /**
    * {@inheritdoc}
    */
-  public function sendMessage($message, $channel = '', $username = '') {
+  public function sendMessage($message, $channel = '', $username = '', string $webhook_url = NULL) {
     $config = $this->config->get('slack.settings');
-    $webhook_url = $config->get('slack_webhook_url');
+    $webhook_url = $webhook_url ?: $config->get('slack_webhook_url');
 
     if (empty($webhook_url)) {
       $this->messenger->addError($this->t('You need to enter a webhook!'));
