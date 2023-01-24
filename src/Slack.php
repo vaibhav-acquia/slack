@@ -131,6 +131,8 @@ class Slack implements SlackInterface {
     }
     $message_options['as_user'] = TRUE;
 
+    $message_options['link_names'] = $config->get('slack_link_names');
+
     return [
       'webhook_url' => $webhook_url,
       'message_options' => $message_options,
