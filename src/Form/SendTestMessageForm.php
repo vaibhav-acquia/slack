@@ -74,7 +74,7 @@ class SendTestMessageForm extends FormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     if (empty($this->config('slack.settings')->get('slack_webhook_url'))) {
-      if(empty($this->config('slack.settings')->get('slack_webhook_key')) || empty($this->config('slack.settings')->get('slack_webhook_key')) ) {
+      if (empty($this->config('slack.settings')->get('slack_webhook_key')) || empty($this->config('slack.settings')->get('slack_webhook_key'))) {
         $form_state->setRedirect('slack.admin_settings');
       }
     }
