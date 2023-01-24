@@ -22,21 +22,21 @@ class Slack implements SlackInterface {
    *
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
-  private $config;
+  protected $config;
 
   /**
    * Http client.
    *
    * @var \GuzzleHttp\ClientInterface
    */
-  private $httpClient;
+  protected $httpClient;
 
   /**
    * Logger service.
    *
    * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
    */
-  private $logger;
+  protected $logger;
 
   /**
    * The messenger service.
