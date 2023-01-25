@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\rules\Plugin\RulesAction\SlackSendMessage.
- */
-
 namespace Drupal\slack_rules\Plugin\RulesAction;
 
 use Drupal\rules\Core\RulesActionBase;

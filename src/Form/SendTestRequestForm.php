@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\slack\Form\SendTestMessageForm.
- */
-
 namespace Drupal\slack\Form;
 
 use Drupal\Core\Ajax\AjaxResponse;
@@ -16,7 +11,7 @@ use Drupal\slack\SlackApiIntegration;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class SendTestMessageForm.
+ * Form for sending a test message.
  *
  * @package Drupal\slack\Form
  */

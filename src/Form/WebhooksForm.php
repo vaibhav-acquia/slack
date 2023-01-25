@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\slack\Form\WebhooksForm.
- * Configures administrative settings for slack.
- */
-
 namespace Drupal\slack\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
@@ -14,7 +8,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class WebhooksForm.
+ * Configures administrative settings for slack.
  *
  * @package Drupal\slack\Form
  *
