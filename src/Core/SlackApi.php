@@ -19,6 +19,7 @@ class SlackApi {
 
   /**
    * SlackApi constructor.
+   *
    * @param $tokens
    * @param array $endpoints
    */
@@ -53,5 +54,5 @@ class SlackApi {
     $body = json_decode($response->getBody()->getContents(), TRUE);
     return $body;
   }
-}
 
+}

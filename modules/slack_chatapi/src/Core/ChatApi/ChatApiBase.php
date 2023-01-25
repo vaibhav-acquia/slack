@@ -16,4 +16,5 @@ abstract class ChatApiBase extends SlackApiBase {
     $json = file_get_contents(__DIR__. '/endpoints.json');
     return $endpoints = json_decode($json, true);
   }
+
 }

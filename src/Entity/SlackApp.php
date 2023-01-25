@@ -219,7 +219,6 @@ class SlackApp extends EditorialContentEntityBase implements SlackAppInterface {
     return $this;
   }
 
-
   /**
    * {@inheritdoc}
    */
@@ -279,7 +278,6 @@ class SlackApp extends EditorialContentEntityBase implements SlackAppInterface {
     $this->set('bot_user_oauth_token', $name);
     return $this;
   }
-
 
   /**
    * {@inheritdoc}

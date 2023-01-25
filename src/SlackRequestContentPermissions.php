@@ -5,12 +5,10 @@ namespace Drupal\slack;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\slack\Entity\SlackRequestContent;
 
-
 /**
  * Provides dynamic permissions for Slack request content of different types.
  *
  * @ingroup slack
- *
  */
 class SlackRequestContentPermissions{
 

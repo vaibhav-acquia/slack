@@ -95,8 +95,10 @@ class SlackRulesUninstallValidator implements ModuleUninstallValidatorInterface 
     try {
       $reaction_rule_storage = $this->entityTypeManager->getStorage('rules_reaction_rule');
       $reaction_rule_config = $reaction_rule_storage->loadByProperties($values);
-    } catch (InvalidPluginDefinitionException $e) {
-    } catch (PluginNotFoundException $e) {
+    }
+    catch (InvalidPluginDefinitionException $e) {
+    }
+    catch (PluginNotFoundException $e) {
     }
 
     return $reaction_rule_config;

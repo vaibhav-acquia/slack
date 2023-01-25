@@ -28,7 +28,6 @@ class UserApiPlugin extends UserApiBase {
     return new SlackApi($token, $endpoints);
   }
 
-
   /**
    * @param string $app_id
    * @return mixed

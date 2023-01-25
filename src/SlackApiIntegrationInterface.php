@@ -65,4 +65,5 @@ interface SlackApiIntegrationInterface {
    * @return mixed
    */
   public function setSlackApp(SlackApp $slack);
+
 }

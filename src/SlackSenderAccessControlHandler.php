@@ -51,5 +51,4 @@ class SlackSenderAccessControlHandler extends EntityAccessControlHandler {
     return AccessResult::allowedIfHasPermission($account, 'add slack sender entities');
   }
 
-
 }

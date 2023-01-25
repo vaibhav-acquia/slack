@@ -149,7 +149,8 @@ class SendTestRequestForm extends FormBase {
       $response->addCommand(new MessageCommand($message, NULL, ['type' => 'error']));
       $form_state->clearErrors();
       \Drupal::messenger()->deleteAll();
-    } else {
+    }
+    else {
       $slack_app = $form_state->getValue("slack_app")[0]["target_id"];
       $endpoint_key = $form_state->getValue('slack_methods');
       $slack_api = \Drupal::service('plugin.manager.slack_api.processor')->createInstance($form_state->getValue('slack_plugin'))->getAvailableEndpoints();
@@ -173,4 +174,5 @@ class SendTestRequestForm extends FormBase {
 
     return $response;
   }
+
 }

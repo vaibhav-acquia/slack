@@ -8,6 +8,7 @@ use Drupal\Component\Plugin\PluginInspectionInterface;
  * Implements ChatApi.
  */
 interface SlackApiBaseInterface extends PluginInspectionInterface {
+
   /**
    * Retrieve all endpoints available in this plugin.
    *

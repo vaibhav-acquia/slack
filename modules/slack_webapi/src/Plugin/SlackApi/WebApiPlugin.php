@@ -5,7 +5,6 @@ namespace Drupal\slack_webapi\Plugin\SlackApi;
 use Drupal\slack_webapi\Core\WebApi\WebApiBase;
 use Drupal\slack\Core\SlackApi;
 
-
 /**
  * Provides WebApi.
  *
@@ -28,7 +27,6 @@ class WebApiPlugin extends WebApiBase {
     return new SlackApi($token, $endpoints);
   }
 
-
   /**
    * @param string $app_id
    * @return mixed
@@ -49,4 +47,5 @@ class WebApiPlugin extends WebApiBase {
     $slack_app_entity = $this->entityTypeManager->getStorage('slack_app')->load($app_id);
     return $slack_app_entity->getAuthorisationToken();
   }
+
 }

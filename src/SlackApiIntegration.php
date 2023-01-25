@@ -63,4 +63,5 @@ class SlackApiIntegration extends SlackApiIntegrationBase {
     }
     return FALSE;
   }
+
 }

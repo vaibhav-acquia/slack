@@ -36,6 +36,7 @@ class SlackApiManager extends DefaultPluginManager implements SlackApiManagerInt
     $this->alterInfo('slack_api_info');
     $this->setCacheBackend($cache_backend, 'slack_api_info');
   }
+
   /**
    * Retrieves a list of available ChatApi plugins.
    *
@@ -86,4 +87,5 @@ class SlackApiManager extends DefaultPluginManager implements SlackApiManagerInt
     }
     return $options;
   }
+
 }

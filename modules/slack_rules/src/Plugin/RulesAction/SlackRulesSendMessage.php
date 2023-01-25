@@ -72,6 +72,7 @@ class SlackRulesSendMessage extends RulesActionBase implements ContainerFactoryP
 
   /**
    * Send message to slack.
+   *
    * @param string $username
    *    The slack username.
    * @param string $message
@@ -82,4 +83,5 @@ class SlackRulesSendMessage extends RulesActionBase implements ContainerFactoryP
   protected function doExecute($message, $channel = '', $username = '') {
     $this->slackService->sendMessage($message, $channel, $username);
   }
+
 }
