@@ -10,7 +10,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Base class for Chat Api.
  */
-abstract class SlackApiBase extends PluginBase implements SlackApiBaseInterface, ContainerFactoryPluginInterface {
+abstract class SlackApiPluginBase extends PluginBase implements SlackApiPluginInterface, ContainerFactoryPluginInterface {
+
   /**
    * Entity type manager.
    *
@@ -41,7 +42,7 @@ abstract class SlackApiBase extends PluginBase implements SlackApiBaseInterface,
   /**
    * {@inheritdoc}
    */
-  public function getAvailableEndpoints() {
+  public function getAvailableEndpoints(): array {
     $json = file_get_contents(__DIR__ . '/endpoints.json');
     return $endpoints = json_decode($json, TRUE);
   }

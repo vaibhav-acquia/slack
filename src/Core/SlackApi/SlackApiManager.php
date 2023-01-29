@@ -11,17 +11,17 @@ use Drupal\Core\Plugin\DefaultPluginManager;
 use Drupal\slack\Core\Annotation\SlackApi;
 
 /**
- * Provides an Chat Api plugin manager for the Slack API.
+ * Provides a plugin manager for SlackApi plugins.
  *
  * @see plugin_api
  */
-class SlackApiManager extends DefaultPluginManager implements SlackApiManagerInterface {
+class SlackApiManager extends DefaultPluginManager {
 
   use CategorizingPluginManagerTrait;
   use ContextAwarePluginManagerTrait;
 
   /**
-   * Constructs a new class instance.
+   * Constructs a SlackApi plugin manager.
    *
    * @param \Traversable $namespaces
    *   An object that implements \Traversable which contains the root paths
@@ -32,13 +32,13 @@ class SlackApiManager extends DefaultPluginManager implements SlackApiManagerInt
    *   The module handler to invoke the alter hook with.
    */
   public function __construct(\Traversable $namespaces, CacheBackendInterface $cache_backend, ModuleHandlerInterface $module_handler) {
-    parent::__construct('Plugin/SlackApi', $namespaces, $module_handler, SlackApiBaseInterface::class, SlackApi::class);
+    parent::__construct('Plugin/SlackApi', $namespaces, $module_handler, SlackApiPluginInterface::class, SlackApi::class);
     $this->alterInfo('slack_api_info');
     $this->setCacheBackend($cache_backend, 'slack_api_info');
   }
 
   /**
-   * Retrieves a list of available ChatApi plugins.
+   * Retrieves a list of available SlackApi plugins.
    *
    * @return string[]
    *   An associative array mapping the IDs of all available plugins to
@@ -53,7 +53,7 @@ class SlackApiManager extends DefaultPluginManager implements SlackApiManagerInt
   }
 
   /**
-   * Retrieves a list of ChatApi plugins, that are applicable for Rules.
+   * Retrieves a list of SlackApi plugins that are applicable for Rules.
    *
    * @return array
    */
@@ -68,7 +68,7 @@ class SlackApiManager extends DefaultPluginManager implements SlackApiManagerInt
   }
 
   /**
-   * Retrieves an list of available EventsApi plugins by given properties.
+   * Retrieves a list of available SlackApi plugins by given properties.
    *
    * @param string $condition
    *   The property to filter on.

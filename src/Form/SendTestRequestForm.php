@@ -157,7 +157,7 @@ class SendTestRequestForm extends FormBase {
     else {
       $slack_app = $form_state->getValue("slack_app")[0]["target_id"];
       $endpoint_key = $form_state->getValue('slack_methods');
-      $slack_api = \Drupal::service('plugin.manager.slack_api.processor')->createInstance($form_state->getValue('slack_plugin'))->getAvailableEndpoints();
+      $slack_api = \Drupal::service('plugin.manager.slack_api')->createInstance($form_state->getValue('slack_plugin'))->getAvailableEndpoints();
       $endpoint = $slack_api[$endpoint_key];
       $params = [];
 

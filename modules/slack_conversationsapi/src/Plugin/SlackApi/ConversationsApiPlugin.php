@@ -2,17 +2,17 @@
 
 namespace Drupal\slack_conversationsapi\Plugin\SlackApi;
 
-use Drupal\slack_conversationsapi\Core\ConversationsApi\ConversationsApiBase;
+use Drupal\slack_conversationsapi\Core\ConversationsApi\ConversationsApiPluginBase;
 
 /**
  * Provides ChatApi.
  *
  * @SlackApi(
- *  id = "slack_conversationapi",
- *  label = @Translation("Slack Conversation API"),
+ *  id = "slack_conversationsapi",
+ *  label = @Translation("Slack Conversations API"),
  *  isApplicableForRules = true,
  * )
  */
-class ConversationsApiPlugin extends ConversationsApiBase {
+class ConversationsApiPlugin extends ConversationsApiPluginBase {
 
 }

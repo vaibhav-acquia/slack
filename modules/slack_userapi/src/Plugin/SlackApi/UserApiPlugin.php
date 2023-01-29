@@ -2,7 +2,7 @@
 
 namespace Drupal\slack_userapi\Plugin\SlackApi;
 
-use Drupal\slack_userapi\Core\UserApi\UserApiBase;
+use Drupal\slack_userapi\Core\UserApi\UserApiPluginBase;
 use Drupal\slack\Core\SlackApi;
 
 /**
@@ -14,7 +14,7 @@ use Drupal\slack\Core\SlackApi;
  *  isApplicableForRules = true,
  * )
  */
-class UserApiPlugin extends UserApiBase {
+class UserApiPlugin extends UserApiPluginBase {
 
   /**
    * @param $app_id

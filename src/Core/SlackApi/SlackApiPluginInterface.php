@@ -7,13 +7,14 @@ use Drupal\Component\Plugin\PluginInspectionInterface;
 /**
  * Implements ChatApi.
  */
-interface SlackApiBaseInterface extends PluginInspectionInterface {
+interface SlackApiPluginInterface extends PluginInspectionInterface {
 
   /**
    * Retrieve all endpoints available in this plugin.
    *
-   * @return mixed
+   * @return array
+   *   Associative array representation of the JSON endpoint.
    */
-  public function getAvailableEndpoints();
+  public function getAvailableEndpoints(): array;
 
 }

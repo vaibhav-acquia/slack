@@ -2,7 +2,7 @@
 
 namespace Drupal\slack_webapi\Plugin\SlackApi;
 
-use Drupal\slack_webapi\Core\WebApi\WebApiBase;
+use Drupal\slack_webapi\Core\WebApi\WebApiPluginBase;
 use Drupal\slack\Core\SlackApi;
 
 /**
@@ -13,7 +13,7 @@ use Drupal\slack\Core\SlackApi;
  *  label = @Translation("Slack Web API"),
  * )
  */
-class WebApiPlugin extends WebApiBase {
+class WebApiPlugin extends WebApiPluginBase {
 
   /**
    * @param $app_id

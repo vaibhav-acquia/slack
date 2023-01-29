@@ -7,7 +7,7 @@ use Drupal\Component\Annotation\Plugin;
 /**
  * Defines a Web API item annotation object.
  *
- * @see \Drupal\slack_api\Core\SlackApi\SlackApiManager
+ * @see \Drupal\slack\Core\SlackApi\SlackApiManager
  * @see plugin_api
  *
  * @Annotation

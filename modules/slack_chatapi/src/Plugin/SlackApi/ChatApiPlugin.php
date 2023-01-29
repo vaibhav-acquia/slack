@@ -2,7 +2,7 @@
 
 namespace Drupal\slack_chatapi\Plugin\SlackApi;
 
-use Drupal\slack_chatapi\Core\ChatApi\ChatApiBase;
+use Drupal\slack_chatapi\Core\ChatApi\ChatApiPluginBase;
 
 /**
  * Provides ChatApi.
@@ -13,6 +13,6 @@ use Drupal\slack_chatapi\Core\ChatApi\ChatApiBase;
  *  isApplicableForRules = true,
  * )
  */
-class ChatApiPlugin extends ChatApiBase {
+class ChatApiPlugin extends ChatApiPluginBase {
 
 }

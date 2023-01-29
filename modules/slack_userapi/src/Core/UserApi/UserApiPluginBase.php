@@ -2,17 +2,17 @@
 
 namespace Drupal\slack_userapi\Core\UserApi;
 
-use Drupal\slack\Core\SlackApi\SlackApiBase;
+use Drupal\slack\Core\SlackApi\SlackApiPluginBase;
 
 /**
- * Base class for Chat Api.
+ * Base class for UserApi plugins.
  */
-abstract class UserApiBase extends SlackApiBase {
+abstract class UserApiPluginBase extends SlackApiPluginBase {
 
   /**
    * {@inheritdoc}
    */
-  public function getAvailableEndpoints() {
+  public function getAvailableEndpoints(): array {
     $json = file_get_contents(__DIR__ . '/endpoints.json');
     return $endpoints = json_decode($json, TRUE);
   }
