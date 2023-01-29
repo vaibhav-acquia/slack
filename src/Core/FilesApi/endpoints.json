@@ -1,38 +1,38 @@
 {
-	"files.comments.add": {
-		"method": "GET",
-		"path": "files.comments.add"
-	},
-	"files.comments.delete": {
-		"method": "GET",
-		"path": "files.comments.delete"
-	},
-	"files.comments.edit": {
-		"method": "GET",
-		"path": "files.comments.edit"
-	},
-	"files.delete": {
-		"method": "GET",
-		"path": "files.delete"
-	},
-	"files.info": {
-		"method": "GET",
-		"path": "files.info"
-	},
-	"files.list": {
-		"method": "GET",
-		"path": "files.list"
-	},
-	"files.revokePublicURL": {
-		"method": "GET",
-		"path": "files.revokePublicURL"
-	},
-	"files.sharedPublicURL": {
-		"method": "GET",
-		"path": "files.sharedPublicURL"
-	},
-	"files.upload": {
-		"method": "GET",
-		"path": "files.upload"
-	}
+  "files.comments.add": {
+    "method": "GET",
+    "path": "files.comments.add"
+  },
+  "files.comments.delete": {
+    "method": "GET",
+    "path": "files.comments.delete"
+  },
+  "files.comments.edit": {
+    "method": "GET",
+    "path": "files.comments.edit"
+  },
+  "files.delete": {
+    "method": "GET",
+    "path": "files.delete"
+  },
+  "files.info": {
+    "method": "GET",
+    "path": "files.info"
+  },
+  "files.list": {
+    "method": "GET",
+    "path": "files.list"
+  },
+  "files.revokePublicURL": {
+    "method": "GET",
+    "path": "files.revokePublicURL"
+  },
+  "files.sharedPublicURL": {
+    "method": "GET",
+    "path": "files.sharedPublicURL"
+  },
+  "files.upload": {
+    "method": "GET",
+    "path": "files.upload"
+  }
 }

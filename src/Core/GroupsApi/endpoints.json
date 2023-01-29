@@ -1,66 +1,66 @@
 {
-	"groups.archive": {
-		"method": "GET",
-		"path": "groups.archive"
-	},
-	"groups.create": {
-		"method": "GET",
-		"path": "groups.create"
-	},
-	"groups.createChild": {
-		"method": "GET",
-		"path": "groups.createChild"
-	},
-	"groups.history": {
-		"method": "GET",
-		"path": "groups.history"
-	},
-	"groups.info": {
-		"method": "GET",
-		"path": "groups.info"
-	},
-	"groups.invite": {
-		"method": "GET",
-		"path": "groups.invite"
-	},
-	"groups.kick": {
-		"method": "GET",
-		"path": "groups.kick"
-	},
-	"groups.leave": {
-		"method": "GET",
-		"path": "groups.leave"
-	},
-	"groups.list": {
-		"method": "GET",
-		"path": "groups.list"
-	},
-	"groups.mark": {
-		"method": "GET",
-		"path": "groups.mark"
-	},
-	"groups.open": {
-		"method": "GET",
-		"path": "groups.open"
-	},
-	"groups.rename": {
-		"method": "GET",
-		"path": "groups.rename"
-	},
-	"groups.replies": {
-		"method": "GET",
-		"path": "groups.replies"
-	},
-	"groups.setPurpose": {
-		"method": "GET",
-		"path": "groups.setPurpose"
-	},
-	"groups.setTopic": {
-		"method": "GET",
-		"path": "groups.setTopic"
-	},
-	"groups.unarchive": {
-		"method": "GET",
-		"path": "groups.unarchive"
-	}
+  "groups.archive": {
+    "method": "GET",
+    "path": "groups.archive"
+  },
+  "groups.create": {
+    "method": "GET",
+    "path": "groups.create"
+  },
+  "groups.createChild": {
+    "method": "GET",
+    "path": "groups.createChild"
+  },
+  "groups.history": {
+    "method": "GET",
+    "path": "groups.history"
+  },
+  "groups.info": {
+    "method": "GET",
+    "path": "groups.info"
+  },
+  "groups.invite": {
+    "method": "GET",
+    "path": "groups.invite"
+  },
+  "groups.kick": {
+    "method": "GET",
+    "path": "groups.kick"
+  },
+  "groups.leave": {
+    "method": "GET",
+    "path": "groups.leave"
+  },
+  "groups.list": {
+    "method": "GET",
+    "path": "groups.list"
+  },
+  "groups.mark": {
+    "method": "GET",
+    "path": "groups.mark"
+  },
+  "groups.open": {
+    "method": "GET",
+    "path": "groups.open"
+  },
+  "groups.rename": {
+    "method": "GET",
+    "path": "groups.rename"
+  },
+  "groups.replies": {
+    "method": "GET",
+    "path": "groups.replies"
+  },
+  "groups.setPurpose": {
+    "method": "GET",
+    "path": "groups.setPurpose"
+  },
+  "groups.setTopic": {
+    "method": "GET",
+    "path": "groups.setTopic"
+  },
+  "groups.unarchive": {
+    "method": "GET",
+    "path": "groups.unarchive"
+  }
 }

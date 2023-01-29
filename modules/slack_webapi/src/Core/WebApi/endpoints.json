@@ -1,5 +1,5 @@
 {
-	"api.test": {
+  "api.test": {
     "method": "GET",
     "path": "api.test",
     "title": "Api test",
@@ -17,9 +17,9 @@
       }
     }
   },
-	"apps.uninstall": {
-		"method": "GET",
-		"path": "apps.uninstall",
+  "apps.uninstall": {
+    "method": "GET",
+    "path": "apps.uninstall",
     "title": "Apps uninstall",
     "description": "Uninstalls your app from a workspace.",
     "content_type": {
@@ -39,10 +39,10 @@
         "required": true
       }
     }
-	},
-	"auth.revoke": {
-		"method": "GET",
-		"path": "auth.revoke",
+  },
+  "auth.revoke": {
+    "method": "GET",
+    "path": "auth.revoke",
     "title": "Auth revoke",
     "description": "Revokes a token.",
     "content_type": {
@@ -57,9 +57,9 @@
       }
     }
   },
-	"auth.test": {
-		"method": "GET",
-		"path": "auth.test",
+  "auth.test": {
+    "method": "GET",
+    "path": "auth.test",
     "title": "Auth test",
     "description": "Checks authentication & identity.",
     "content_type": {
@@ -67,9 +67,9 @@
       "json": "application/json; charset=utf-8"
     }
   },
-	"bots.info": {
-		"method": "GET",
-		"path": "bots.info",
+  "bots.info": {
+    "method": "GET",
+    "path": "bots.info",
     "title": "Bots info",
     "description": "Gets information about a bot user.",
     "content_type": {
@@ -89,8 +89,8 @@
         "required": false
       }
     }
-	},
-	"oauth.access": {
+  },
+  "oauth.access": {
     "method": "GET",
     "path": "oauth.access",
     "title": "Oauth access",

@@ -1,7 +1,7 @@
 {
   "conversations.archive": {
-  "method": "GET",
-		"path": "conversations.archive",
+    "method": "GET",
+    "path": "conversations.archive",
     "title": "Archive conversations",
     "description": "Closes a direct message or multi-person direct message.",
     "content_type": {
@@ -16,10 +16,10 @@
         "required": true
       }
     }
-	},
-	"conversations.close": {
-		"method": "GET",
-		"path": "conversations.close",
+  },
+  "conversations.close": {
+    "method": "GET",
+    "path": "conversations.close",
     "title": "Close conversations",
     "description": "Closes a direct message or multi-person direct message.",
     "content_type": {
@@ -34,10 +34,10 @@
         "required": true
       }
     }
-	},
-	"conversations.create": {
-		"method": "GET",
-		"path": "conversations.create",
+  },
+  "conversations.create": {
+    "method": "GET",
+    "path": "conversations.create",
     "title": "Create conversations",
     "description": "Create a public or private channel.",
     "content_type": {
@@ -52,10 +52,10 @@
         "required": true
       }
     }
-	},
-	"conversations.history": {
-		"method": "GET",
-		"path": "conversations.history",
+  },
+  "conversations.history": {
+    "method": "GET",
+    "path": "conversations.history",
     "title": "Conversations history",
     "description": "Fetches a conversation's history of messages and events.",
     "content_type": {
@@ -69,10 +69,10 @@
         "required": true
       }
     }
-	},
-	"conversations.info": {
-		"method": "GET",
-		"path": "conversations.info",
+  },
+  "conversations.info": {
+    "method": "GET",
+    "path": "conversations.info",
     "title": "Conversations INFO",
     "description": "Retrieve information about a conversation.\n\n",
     "content_type": {
@@ -86,10 +86,10 @@
         "required": true
       }
     }
-	},
-	"conversations.invite": {
-		"method": "GET",
-		"path": "conversations.invite",
+  },
+  "conversations.invite": {
+    "method": "GET",
+    "path": "conversations.invite",
     "title": "Conversation invite",
     "description": "This method invites 1-1000 users to a public or private channel. The calling user must be a member of the channel.",
     "content_type": {
@@ -110,10 +110,10 @@
         "required": true
       }
     }
-	},
-	"conversations.join": {
-		"method": "GET",
-		"path": "conversations.join",
+  },
+  "conversations.join": {
+    "method": "GET",
+    "path": "conversations.join",
     "title": "Conversation join",
     "description": "Joins an existing conversation.",
     "content_type": {
@@ -129,9 +129,9 @@
       }
     }
   },
-	"conversations.kick": {
-		"method": "GET",
-		"path": "conversations.kick",
+  "conversations.kick": {
+    "method": "GET",
+    "path": "conversations.kick",
     "title": "Conversation kick",
     "description": "Removes a user from a conversation.",
     "content_type": {
@@ -152,10 +152,10 @@
         "required": true
       }
     }
-	},
-	"conversations.leave": {
-		"method": "GET",
-		"path": "conversations.leave",
+  },
+  "conversations.leave": {
+    "method": "GET",
+    "path": "conversations.leave",
     "title": "Conversation leave",
     "description": "Leaves a conversation.",
     "content_type": {
@@ -170,19 +170,19 @@
         "required": true
       }
     }
-	},
-	"conversations.list": {
-		"method": "GET",
-		"path": "conversations.list",
+  },
+  "conversations.list": {
+    "method": "GET",
+    "path": "conversations.list",
     "title": "Conversation list",
     "description": "Lists all channels in a Slack team.",
     "content_type": {
       "default": "application/x-www-form-urlencoded"
     }
-	},
-	"conversations.members": {
-		"method": "GET",
-		"path": "conversations.members",
+  },
+  "conversations.members": {
+    "method": "GET",
+    "path": "conversations.members",
     "title": "Conversation members",
     "description": "Retrieve members of a conversation.",
     "content_type": {
@@ -196,10 +196,10 @@
         "required": true
       }
     }
-	},
-	"conversations.open": {
-		"method": "GET",
-		"path": "conversations.open",
+  },
+  "conversations.open": {
+    "method": "GET",
+    "path": "conversations.open",
     "title": "Conversation open",
     "description": "Opens or resumes a direct message or multi-person direct message.",
     "content_type": {
@@ -226,10 +226,10 @@
         "required": false
       }
     }
-	},
-	"conversations.rename": {
-		"method": "GET",
-		"path": "conversations.rename",
+  },
+  "conversations.rename": {
+  "method": "GET",
+  "path": "conversations.rename",
     "title": "Rename conversation",
     "description": "Renames a conversation.",
     "content_type": {
@@ -250,10 +250,10 @@
         "required": true
       }
     }
-	},
-	"conversations.replies": {
-		"method": "GET",
-		"path": "conversations.replies",
+  },
+  "conversations.replies": {
+    "method": "GET",
+    "path": "conversations.replies",
     "title": "Get replies",
     "description": "Retrieve a thread of messages posted to a conversation.",
     "content_type": {
@@ -273,10 +273,10 @@
         "required": true
       }
     }
-	},
-	"conversations.setPurpose": {
-		"method": "GET",
-		"path": "conversations.setPurpose",
+  },
+  "conversations.setPurpose": {
+    "method": "GET",
+    "path": "conversations.setPurpose",
     "title": "Set purpose",
     "description": "This method is used to change the purpose of a conversation, cannot be called with bot user",
     "content_type": {
@@ -296,10 +296,10 @@
         "required": true
       }
     }
-	},
-	"conversations.setTopic": {
-		"method": "GET",
-		"path": "conversations.setTopic",
+  },
+  "conversations.setTopic": {
+    "method": "GET",
+    "path": "conversations.setTopic",
     "title": "Set topic",
     "description": "Sets the topic for a conversation. This method cannot be called with bot user",
     "content_type": {
@@ -320,10 +320,10 @@
         "required": true
       }
     }
-	},
-	"conversations.unarchive": {
-		"method": "GET",
-		"path": "conversations.unarchive",
+  },
+  "conversations.unarchive": {
+    "method": "GET",
+    "path": "conversations.unarchive",
     "title": "Un Archive",
     "description": "Reverses conversation archival.",
     "content_type": {
@@ -338,5 +338,5 @@
         "required": true
       }
     }
-	}
+  }
 }
