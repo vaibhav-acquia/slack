@@ -36,7 +36,7 @@ class SendTestRequestForm extends FormBase {
    *
    * @var \Drupal\slack\Service\SlackFormMethodsBuilder
    */
-  protected $slackApiMehtodFormBuilder;
+  protected $slackApiMethodFormBuilder;
 
   /**
    * Slack API send request service.
@@ -52,7 +52,7 @@ class SendTestRequestForm extends FormBase {
     $instance = parent::create($container);
     $instance->messenger = $container->get('messenger');
     $instance->entityTypeManager = $container->get('entity_type.manager');
-    $instance->slackApiMehtodFormBuilder = $container->get('slack_api.method_form_builder');
+    $instance->slackApiMethodFormBuilder = $container->get('slack_api.method_form_builder');
     $instance->slackSendRequest = $container->get('slack.slack_send_request');
     return $instance;
   }
@@ -72,7 +72,11 @@ class SendTestRequestForm extends FormBase {
     $slack_plugin = $form_state->getValue("slack_plugin");
     $slack_method_key = $form_state->getValue("slack_methods");
 
-    $form = $this->slackApiMehtodFormBuilder->getMethodsForm($form, ['app' => $slack_app, 'plugin' => $slack_plugin, 'method' => $slack_method_key]);
+    $form = $this->slackApiMethodFormBuilder->getMethodsForm($form, [
+      'app' => $slack_app,
+      'plugin' => $slack_plugin,
+      'method' => $slack_method_key,
+    ]);
 
     if (!empty($form['slack_plugin'])) {
       $form['slack_plugin']['#ajax'] = [
