@@ -31,6 +31,6 @@
         "source": "https://git.drupalcode.org/project/slack"
     },
     "require": {
-        "drupal/core": "^8 || ^9"
+        "drupal/core": "^9.4 || ^10"
     }
 }

@@ -1,6 +1,7 @@
-name: 'Slack'
+name: Slack
 type: module
-description: 'Integration with Slack.com service.'
-core_version_requirement: ^8 || ^9
-configure: slack.admin_settings
+description: 'Integration with Slack.com service'
 package: Slack API
+core_version_requirement: ^9.4 || ^10
+
+configure: slack.admin_settings

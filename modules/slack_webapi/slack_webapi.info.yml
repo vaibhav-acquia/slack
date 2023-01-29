@@ -1,7 +1,7 @@
-name: 'Slack WebApi'
+name: Slack WebApi
 type: module
 description: 'Implements Web Api for Slack'
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^9.4 || ^10
 package: 'Slack API'
 dependencies:
-  - slack
+  - slack:slack

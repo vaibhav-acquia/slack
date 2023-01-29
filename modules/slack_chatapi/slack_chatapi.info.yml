@@ -1,7 +1,7 @@
-name: 'Slack ChatApi'
+name: Slack ChatApi
 type: module
 description: 'Implements Chat Api for Slack'
-core_version_requirement: ^8 || ^9
 package: 'Slack API'
+core_version_requirement: ^9.4 || ^10
 dependencies:
-  - slack
+  - slack:slack
