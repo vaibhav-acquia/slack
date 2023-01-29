@@ -42,8 +42,8 @@ abstract class SlackApiBase extends PluginBase implements SlackApiBaseInterface,
    * {@inheritdoc}
    */
   public function getAvailableEndpoints() {
-    $json = file_get_contents(__DIR__. '/endpoints.json');
-    return $endpoints = json_decode($json, true);
+    $json = file_get_contents(__DIR__ . '/endpoints.json');
+    return $endpoints = json_decode($json, TRUE);
   }
 
 }
