@@ -2,7 +2,7 @@
 
 namespace Drupal\slack;
 
-use Drupal\slack\Entity\SlackAFORM_URL_ENCODEDpp;
+use Drupal\slack\Entity\SlackApp;
 
 /**
  * Implements interface SlackApiIntegrationInterface.
@@ -61,6 +61,7 @@ interface SlackApiIntegrationInterface {
    * Set slack app entity.
    *
    * @param \Drupal\slack\Entity\SlackApp $slack
+   *   The SlackApp entity.
    *
    * @return mixed
    */

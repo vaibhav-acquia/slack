@@ -7,7 +7,6 @@ use Drupal\Core\Ajax\MessageCommand;
 use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\slack\SlackApiIntegration;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

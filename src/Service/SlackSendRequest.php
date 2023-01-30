@@ -2,7 +2,6 @@
 
 namespace Drupal\slack\Service;
 
-use Drupal;
 use Drupal\Core\Logger\LoggerChannelFactory;
 use Drupal\Core\Messenger\Messenger;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -38,7 +37,7 @@ class SlackSendRequest extends SlackApiIntegration {
   public function __construct(Client $client, LoggerChannelFactory $logger_factory, Messenger $messenger) {
     parent::__construct($client, $logger_factory);
     $this->messenger = $messenger;
-    $this->config = Drupal::config('slack.settings');
+    $this->config = \Drupal::config('slack.settings');
   }
 
   /**
@@ -65,17 +64,17 @@ class SlackSendRequest extends SlackApiIntegration {
       $logger->info('Message was successfully sent!');
       return $response;
     }
-    catch (\GuzzleHttp\Exception\ServerException $e) {
+    catch (ServerException $e) {
       $logger->error('Server error! It may appear if you try to use unexisting chatroom.');
       watchdog_exception('slack', $e);
       return FALSE;
     }
-    catch (\GuzzleHttp\Exception\ConnectException $e) {
+    catch (ConnectException $e) {
       $logger->error('Connection error! Something wrong with your connection. Message was\'nt sent.');
       watchdog_exception('slack', $e);
       return FALSE;
     }
-    catch (\GuzzleHttp\Exception\RequestException $e) {
+    catch (RequestException $e) {
       $logger->error('Request error! It may appear if you entered the invalid Webhook value.');
       watchdog_exception('slack', $e);
       return FALSE;

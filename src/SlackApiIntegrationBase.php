@@ -2,8 +2,6 @@
 
 namespace Drupal\slack;
 
-use Drupal;
-use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Logger\LoggerChannelFactory;
 use Drupal\slack\Entity\SlackApp;
 use GuzzleHttp\Client;
@@ -73,7 +71,7 @@ class SlackApiIntegrationBase implements SlackApiIntegrationInterface {
   /**
    * {@inheritdoc}
    */
-  public function setSlackApp($slack) {
+  public function setSlackApp(SlackApp $slack) {
     $this->slack_app = $slack;
   }
 
