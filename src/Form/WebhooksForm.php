@@ -4,7 +4,6 @@ namespace Drupal\slack\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -17,26 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 class WebhooksForm extends ConfigFormBase {
 
   /**
-   * Messenger service
-   *
-   * @var \Drupal\Core\Messenger\Messenger
-   */
-  protected $messenger;
-
-  /**
    * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    $instance = parent::create($container);
-    $instance->messenger = $container->get('messenger');
-    return $instance;
-  }
-
-  /**
-   * Returns a unique string identifying the form.
-   *
-   * @return string
-   *   The unique string identifying the form.
    */
   public function getFormId() {
     return 'slack_settings';
@@ -49,8 +29,11 @@ class WebhooksForm extends ConfigFormBase {
     return ['slack.settings'];
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $this->messenger->addMessage($this->t("A deprecated Incoming Webhooks is not recommended to use. <a href='https://api.slack.com/legacy/custom-integrations/messaging/webhooks' target='_blank'>More info</a>"), 'warning');
+    $this->messenger()->addWarning($this->t('A deprecated Incoming Webhooks is not recommended to use. <a href="https://api.slack.com/legacy/custom-integrations/messaging/webhooks" target="_blank">More info</a>'));
 
     $config = $this->config('slack.settings');
     $form['slack_webhook_url'] = array(
@@ -87,10 +70,10 @@ class WebhooksForm extends ConfigFormBase {
     $response = \Drupal::service('slack.slack_send_request')->sendMessage($webhook, $message);
 
     if (Response::HTTP_OK == $response->getStatusCode()) {
-      $this->messenger->addMessage($this->t('Message was successfully sent!'));
+      $this->messenger()->addMessage($this->t('Message was successfully sent!'));
     }
     else {
-      $this->messenger->addMessage($this->t('Please check log messages for further details'), 'warning');
+      $this->messenger()->addWarning($this->t('Please check log messages for further details'));
     }
     parent::submitForm($form, $form_state);
   }

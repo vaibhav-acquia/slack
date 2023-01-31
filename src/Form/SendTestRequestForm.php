@@ -17,14 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class SendTestRequestForm extends FormBase {
 
   /**
-   * Messenger service
-   *
-   * @var \Drupal\Core\Messenger\Messenger
-   */
-  protected $messenger;
-
-  /**
-   * Messenger service
+   * The entity type manager service
    *
    * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
@@ -49,7 +42,6 @@ class SendTestRequestForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     $instance = parent::create($container);
-    $instance->messenger = $container->get('messenger');
     $instance->entityTypeManager = $container->get('entity_type.manager');
     $instance->slackApiMethodFormBuilder = $container->get('slack_api.method_form_builder');
     $instance->slackSendRequest = $container->get('slack.slack_send_request');
@@ -151,7 +143,7 @@ class SendTestRequestForm extends FormBase {
       }
       $response->addCommand(new MessageCommand($message, NULL, ['type' => 'error']));
       $form_state->clearErrors();
-      \Drupal::messenger()->deleteAll();
+      $this->messenger()->deleteAll();
     }
     else {
       $slack_app = $form_state->getValue("slack_app")[0]["target_id"];
