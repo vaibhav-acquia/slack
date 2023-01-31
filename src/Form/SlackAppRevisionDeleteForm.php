@@ -91,7 +91,10 @@ class SlackAppRevisionDeleteForm extends ConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->SlackAppStorage->deleteRevision($this->revision->getRevisionId());
 
-    $this->logger('content')->notice('Slack App: deleted %title revision %revision.', ['%title' => $this->revision->label(), '%revision' => $this->revision->getRevisionId()]);
+    $this->getLogger('content')->notice('Slack App: deleted %title revision %revision.', [
+      '%title' => $this->revision->label(),
+      '%revision' => $this->revision->getRevisionId(),
+    ]);
     $this->messenger()->addMessage($this->t('Revision from %revision-date of Slack App %title has been deleted.', [
       '%revision-date' => format_date($this->revision->getRevisionCreationTime()),
       '%title' => $this->revision->label(),
