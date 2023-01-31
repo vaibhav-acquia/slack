@@ -36,25 +36,25 @@ class WebhooksForm extends ConfigFormBase {
     $this->messenger()->addWarning($this->t('A deprecated Incoming Webhooks is not recommended to use. <a href="https://api.slack.com/legacy/custom-integrations/messaging/webhooks" target="_blank">More info</a>'));
 
     $config = $this->config('slack.settings');
-    $form['slack_webhook_url'] = array(
+    $form['slack_webhook_url'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Webhook URL'),
       '#description' => $this->t('Enter your Webhook URL from an Incoming WebHooks integration. It looks like https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYY/ZZZZZZZZZZZZZZZZZZZZZZZZ'),
       '#default_value' => $config->get('slack_webhook_url'),
       '#required' => TRUE,
-    );
-    $form['slack_test_message'] = array(
+    ];
+    $form['slack_test_message'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Message'),
       '#required' => TRUE,
-    );
+    ];
 
     $form['actions']['#type'] = 'actions';
-    $form['actions']['submit'] = array(
+    $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Send message'),
       '#button_type' => 'primary',
-    );
+    ];
     return $form;
   }
 
