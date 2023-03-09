@@ -108,7 +108,7 @@ class SettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('slack.settings');
     $config
-      ->set('slack_webhook_url', $form_state->getValue('slack_webhook_url') !== NULL ?: trim($form_state->getValue('slack_webhook_url')))
+      ->set('slack_webhook_url', trim($form_state->getValue('slack_webhook_url')))
       ->set('slack_channel', $form_state->getValue('slack_channel'))
       ->set('slack_username', $form_state->getValue('slack_username'))
       ->set('slack_icon_type', $form_state->getValue('slack_icon_type'))
