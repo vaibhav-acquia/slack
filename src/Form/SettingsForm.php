@@ -161,9 +161,9 @@ class SettingsForm extends ConfigFormBase {
       '#description' => $this->t('Should names be linked in messages? See https://api.slack.com/methods/chat.postMessage#arg_link_names'),
       '#default_value' => $config->get('slack_link_names'),
     ];
-    if (empty($config->get('slack_webhook_url'))) {
+    if (empty($config->get('slack_webhook_url')) && empty($config->get('slack_webhook_key'))) {
       $this->messenger()
-        ->addWarning($this->t('Slack sending message page will be available after you fill "Webhook URL" field'));
+        ->addWarning($this->t('Slack sending message page will be available after you fill "Webhook URL" field or using Key module'));
     }
     return parent::buildForm($form, $form_state);
   }
