@@ -3,9 +3,11 @@
 namespace Drupal\slack;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\key\KeyRepositoryInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Exception\RequestException;
@@ -46,6 +48,20 @@ class Slack implements SlackInterface {
   protected $messenger;
 
   /**
+   * The module manager service.
+   *
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected ModuleHandlerInterface $moduleHandler;
+
+  /**
+   * The Key repository service.
+   *
+   * @var \Drupal\key\KeyRepositoryInterface
+   */
+  protected KeyRepositoryInterface $keyRepository;
+
+  /**
    * Constructs a Slack object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config
@@ -56,12 +72,33 @@ class Slack implements SlackInterface {
    *   Logger.
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
    *   Messenger service.
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
+   *   The module manager service.
+   * @param \Drupal\key\KeyRepositoryInterface|null $key_repository
+   *   The token service.
    */
-  public function __construct(ConfigFactoryInterface $config, ClientInterface $http_client, LoggerChannelFactoryInterface $logger, MessengerInterface $messenger) {
+  public function __construct(ConfigFactoryInterface $config, ClientInterface $http_client, LoggerChannelFactoryInterface $logger, MessengerInterface $messenger, ModuleHandlerInterface $module_handler, KeyRepositoryInterface $key_repository = NULL) {
     $this->config = $config;
     $this->httpClient = $http_client;
     $this->logger = $logger;
     $this->messenger = $messenger;
+    $this->moduleHandler = $module_handler;
+    if (!is_null($key_repository)) {
+      $this->keyRepository = $key_repository;
+    }
+  }
+
+  /**
+   * Set the Key repository service.
+   *
+   * This has a separate setter (unlike all other dependent objects mentioned
+   * in the constructor) because it's an optional dependency.
+   *
+   * @param \Drupal\key\KeyRepositoryInterface $key_repository
+   *   the Key repository service.
+   */
+  public function setKeyRepository(KeyRepositoryInterface $key_repository) {
+    $this->keyRepository = $key_repository;
   }
 
   /**
@@ -70,12 +107,20 @@ class Slack implements SlackInterface {
   public function sendMessage($message, $channel = '', $username = '', string $webhook_url = NULL) {
     $config = $this->config->get('slack.settings');
     $webhook_url = $webhook_url ?: $config->get('slack_webhook_url');
-
     if (empty($webhook_url)) {
-      $this->messenger->addError($this->t('You need to enter a webhook!'));
-      return FALSE;
+      if (empty($config->get('slack_webhook_key')) || !$this->moduleHandler->moduleExists('key')) {
+        $this->messenger->addError($this->t('You need to enter a webhook or a webhook key and have key module enabled!'));
+        return FALSE;
+      }
+      else {
+        $key = $this->keyRepository->getKey($config->get('slack_webhook_key'));
+        if (empty($key)) {
+          $this->messenger->addError($this->t('The key provided does not exist'));
+          return FALSE;
+        }
+        $webhook_url = $key->getKeyValue();
+      }
     }
-
     $this->logger->get('slack')
       ->info('Sending message "@message" to @channel channel as "@username"', [
         '@message' => $message,
@@ -131,7 +176,7 @@ class Slack implements SlackInterface {
     }
     $message_options['as_user'] = TRUE;
 
-    $message_options['link_names'] = (bool) $config->get('slack_link_names');
+    $message_options['link_names'] = $config->get('slack_link_names');
 
     return [
       'webhook_url' => $webhook_url,

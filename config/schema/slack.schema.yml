@@ -4,6 +4,9 @@ slack.settings:
     slack_webhook_url:
       type: uri
       label: 'The Webhook URL from an "Incoming WebHooks" integration.'
+    slack_webhook_key:
+      type: string
+      label: 'The Key Machine name.'
     slack_channel:
       type: string
       label: 'The channel name with # symbol, for example #general (or @username for a private message or a private group name).'

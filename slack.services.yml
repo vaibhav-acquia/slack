@@ -1,4 +1,6 @@
 services:
   slack.slack_service:
     class: Drupal\slack\Slack
-    arguments: ['@config.factory', '@http_client', '@logger.factory', '@messenger']
+    arguments: ['@config.factory', '@http_client', '@logger.factory', '@messenger', '@module_handler']
+    calls:
+      - [ setKeyRepository, [ '@?key.repository' ] ]
