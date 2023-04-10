@@ -21,11 +21,8 @@ function slack_update_8001() {
     return t('%module_name module is not installed. No changes have been applied.', ['%module_name' => 'Key']);
   }
   elseif (empty($config->get('key_provider_settings')['key_value'])) {
-    /** @var \Drupal\Core\Config\ConfigInstallerInterface $installer */
-    $installer = \Drupal::service('config.installer');
     $config->set('key_provider_settings', ['key_value' => $slack_config->get('slack_webhook_url')]);
     $config->save();
-
   }
   $slack_config->set('slack_webhook_url', '');
   $slack_config->set('slack_webhook_key', 'slack');
