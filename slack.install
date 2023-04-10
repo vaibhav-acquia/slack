@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Module installation hooks implementation.
+ */
+
+use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Config\InstallStorage;
+
+/**
+ * Create key module config for Slack if enabled.
+ */
+function slack_update_8001() {
+  $config_name = 'key.key.slack';
+
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable($config_name);
+  $slack_config = $config_factory->getEditable('slack.settings');
+  if (!\Drupal::moduleHandler()->moduleExists('key')) {
+    return t('%module_name module is not installed. No changes have been applied.', ['%module_name' => 'Key']);
+  }
+  elseif (empty($config->get('key_provider_settings')['key_value'])) {
+    /** @var \Drupal\Core\Config\ConfigInstallerInterface $installer */
+    $installer = \Drupal::service('config.installer');
+    $config->set('key_provider_settings', ['key_value' => $slack_config->get('slack_webhook_url')]);
+    $config->save();
+
+  }
+  $slack_config->set('slack_webhook_url', '');
+  $slack_config->set('slack_webhook_key', 'slack');
+  $slack_config->save();
+  return t('%slack key settings has been created.', ['%slack' => 'Slack']);
+}
