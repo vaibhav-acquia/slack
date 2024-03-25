@@ -181,12 +181,12 @@ class Slack implements SlackInterface {
     }
     catch (ServerException $e) {
       $logger->error('Server error! It may appear if you try to use unexisting chatroom.');
-      watchdog_exception('slack', $e);
+      \Drupal\Component\Utility\DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '10.1.0', fn() => \Drupal\Core\Utility\Error::logException(\Drupal::logger('slack'), $e), fn() => watchdog_exception('slack', $e));
       return FALSE;
     }
     catch (RequestException $e) {
       $logger->error('Request error! It may appear if you entered the invalid Webhook value.');
-      watchdog_exception('slack', $e);
+      \Drupal\Component\Utility\DeprecationHelper::backwardsCompatibleCall(\Drupal::VERSION, '10.1.0', fn() => \Drupal\Core\Utility\Error::logException(\Drupal::logger('slack'), $e), fn() => watchdog_exception('slack', $e));
       return FALSE;
     }
   }
